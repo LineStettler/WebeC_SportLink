@@ -1,0 +1,107 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="1356" measuredH="599" mockupW="1229" mockupH="599">
+  <controls>
+    <control controlID="70" controlTypeID="com.balsamiq.mockups::TextArea" x="1156" y="156" w="-1" h="-1" measuredW="200" measuredH="140" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>-Screen%20registrieren%0A-Screen%20best%E4tigungen%0A-Kontakte%0A-Einstellungen</text>
+      </controlProperties>
+    </control>
+    <control controlID="74" controlTypeID="com.balsamiq.mockups::iPhone" x="127" y="0" w="323" h="599" measuredW="282" measuredH="573" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="75" controlTypeID="com.balsamiq.mockups::Calendar" x="295" y="127" w="-1" h="-1" measuredW="96" measuredH="96" zOrder="2" locked="false" isInGroup="-1"/>
+    <control controlID="76" controlTypeID="com.balsamiq.mockups::SubTitle" x="207" y="104" w="-1" h="-1" measuredW="158" measuredH="23" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>20</size>
+        <text>Anfrage%20Erstellen</text>
+      </controlProperties>
+    </control>
+    <control controlID="77" controlTypeID="com.balsamiq.mockups::TextInput" x="188" y="130" w="-1" h="-1" measuredW="70" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>27/05/16</text>
+      </controlProperties>
+    </control>
+    <control controlID="78" controlTypeID="com.balsamiq.mockups::TextInput" x="189" y="171" w="-1" h="-1" measuredW="46" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>13%3A30</text>
+      </controlProperties>
+    </control>
+    <control controlID="79" controlTypeID="com.balsamiq.mockups::TextArea" x="188" y="376" w="201" h="71" measuredW="200" measuredH="140" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>-Text</text>
+      </controlProperties>
+    </control>
+    <control controlID="80" controlTypeID="com.balsamiq.mockups::ComboBox" x="301" y="235" w="-1" h="-1" measuredW="84" measuredH="24" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Kontakte</text>
+      </controlProperties>
+    </control>
+    <control controlID="81" controlTypeID="com.balsamiq.mockups::CheckBox" x="188" y="250" w="-1" h="-1" measuredW="110" measuredH="22" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>13421772</color>
+        <text>Meine%20Gruppen</text>
+      </controlProperties>
+    </control>
+    <control controlID="82" controlTypeID="com.balsamiq.mockups::CheckBox" x="188" y="271" w="-1" h="-1" measuredW="111" measuredH="22" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Offene%20Anfrage</text>
+      </controlProperties>
+    </control>
+    <control controlID="83" controlTypeID="com.balsamiq.mockups::CheckBox" x="189" y="293" w="-1" h="-1" measuredW="106" measuredH="22" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>selected</state>
+        <text>Einzel%20Anfrage</text>
+      </controlProperties>
+    </control>
+    <control controlID="84" controlTypeID="com.balsamiq.mockups::Label" x="189" y="218" w="-1" h="-1" measuredW="68" measuredH="21" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Anfrage%20an%3A</text>
+      </controlProperties>
+    </control>
+    <control controlID="85" controlTypeID="com.balsamiq.mockups::ButtonBar" x="452" y="89" w="235" h="52" measuredW="214" measuredH="23" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>2</selectedIndex>
+        <size>9</size>
+        <text>Sportart%2C%20Erstellen%2C%20Anfragen%2C%20Kontakte</text>
+      </controlProperties>
+    </control>
+    <control controlID="86" controlTypeID="com.balsamiq.mockups::CheckBox" x="189" y="293" w="-1" h="-1" measuredW="106" measuredH="22" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>selected</state>
+        <text>Einzel%20Anfrage</text>
+      </controlProperties>
+    </control>
+    <control controlID="87" controlTypeID="com.balsamiq.mockups::TextInput" x="189" y="197" w="84" h="-1" measuredW="34" measuredH="27" zOrder="14" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Ort</text>
+      </controlProperties>
+    </control>
+    <control controlID="88" controlTypeID="com.balsamiq.mockups::CheckBox" x="301" y="271" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="15" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Freizeit</text>
+      </controlProperties>
+    </control>
+    <control controlID="89" controlTypeID="com.balsamiq.mockups::CheckBox" x="301" y="288" w="-1" h="-1" measuredW="86" measuredH="22" zOrder="16" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Wettkampf</text>
+      </controlProperties>
+    </control>
+    <control controlID="90" controlTypeID="com.balsamiq.mockups::CheckBox" x="301" y="308" w="-1" h="-1" measuredW="67" measuredH="22" zOrder="17" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Training</text>
+      </controlProperties>
+    </control>
+    <control controlID="91" controlTypeID="com.balsamiq.mockups::ComboBox" x="188" y="345" w="-1" h="-1" measuredW="80" measuredH="24" zOrder="18" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sportart</text>
+      </controlProperties>
+    </control>
+    <control controlID="94" controlTypeID="com.balsamiq.mockups::Image" x="372" y="105" w="27" h="22" measuredW="128" measuredH="118" zOrder="19" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/06_menu_stack-128.png</src>
+        <text/>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
