@@ -1,0 +1,62 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="497" measuredH="627" mockupW="323" mockupH="591">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="174" y="36" w="323" h="591" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Accordion" x="216" y="185" w="238" h="357" measuredW="186" measuredH="186" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <text>Line%20Stettler%2C%20Do%2028.04.%2C%2014%3A30%0AAdrian%20Welch%2C%20Sa%2030.04.%2C%209%3A00%0ANils%20Egger%2C%20Sa%2006.05.%2C%2014%3A00%20%0AAlois%20Meier%2C%20Mo%2008.05.%2C%2015%3A00</text>
+        <value>9</value>
+        <verticalScrollbar>true</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="224" y="142" w="-1" h="-1" measuredW="73" measuredH="28" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>20</size>
+        <text>Termine</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Map" x="220" y="241" w="85" h="53" measuredW="252" measuredH="222" zOrder="3" locked="false" isInGroup="-1"/>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="221" y="217" w="-1" h="-1" measuredW="149" measuredH="21" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Freizeit%3A%20Bootstyp%20Fireball</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Paragraph" x="218" y="287" w="275" h="45" measuredW="275" measuredH="80" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>12</size>
+        <text>%20%0A%3Eerste%20Jollen-Ehrfahrungen%20von%20Vorteil%0A%3EAusr%FCstung%20in%20gr%F6sse%20S%2CM%20vorhanden</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Image" x="270" y="257" w="19" h="16" measuredW="640" measuredH="531" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/marker.png</src>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Image" x="414" y="144" w="33" h="24" measuredW="128" measuredH="118" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>appointments%26bm%3Bappointments.bmml%26bm%3Bappointments.bmml%26bm%3Bappointments.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22240%2C108%2C273%2C132%22%20href%3D%22appointments.bmml%22%20alt%3D%22appointments%22%20id%3D%2211%22/%3E</map>
+        <src>../porject_git/Documents/Mockup/assets/06_menu_stack-128.png</src>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="270" y="350" w="-1" h="-1" measuredW="109" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>079%20123%2045%2067</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::ModalScreen" x="216" y="183" w="235" h="358" measuredW="320" measuredH="240" zOrder="9" locked="false" isInGroup="-1"/>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Menu" x="270" y="183" w="181" h="-1" measuredW="150" measuredH="192" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Anfrage_Erstellen%26bm%3BAnfrage_Erstellen.bmml%26bm%3BAnfrage_Erstellen.bmml%26bm%3BAnfrage_Erstellen.bmml%2C%2CAnfrage_Suchen%26bm%3BAnfrage_Suchen.bmml%26bm%3BAnfrage_Suchen.bmml%26bm%3BAnfrage_Suchen.bmml%2C%2CAnfrage_Besta%u0308tigen%26bm%3BAnfrage_Besta%u0308tigen.bmml%26bm%3BAnfrage_Besta%u0308tigen.bmml%26bm%3BAnfrage_Besta%u0308tigen.bmml%2C%2COffene_Anfragen%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml%2C%2CKontakte%26bm%3BKontakte.bmml%26bm%3BKontakte.bmml%26bm%3BKontakte.bmml%2C%2Cappointments%26bm%3Bappointments.bmml%26bm%3Bappointments.bmml%26bm%3Bappointments.bmml%2C%2CLoggin%26bm%3BLoggin.bmml%26bm%3BLoggin.bmml%26bm%3BLoggin.bmml%2C</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%2296%2C152%2C277%2C173%22%20href%3D%22Anfrage_Erstellen.bmml%22%20alt%3D%22Anfrage_Erstellen%22%20id%3D%2214%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%2296%2C178%2C277%2C199%22%20href%3D%22Anfrage_Suchen.bmml%22%20alt%3D%22Anfrage_Suchen%22%20id%3D%2214%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%2296%2C204%2C277%2C225%22%20href%3D%22Anfrage_Besta%25CC%2588tigen.bmml%22%20alt%3D%22Anfrage_Besta%u0308tigen%22%20id%3D%2214%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%2296%2C230%2C277%2C251%22%20href%3D%22Offene_Anfragen.bmml%22%20alt%3D%22Offene_Anfragen%22%20id%3D%2214%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%2296%2C256%2C277%2C277%22%20href%3D%22Kontakte.bmml%22%20alt%3D%22Kontakte%22%20id%3D%2214%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%2296%2C282%2C277%2C303%22%20href%3D%22appointments.bmml%22%20alt%3D%22appointments%22%20id%3D%2214%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%2296%2C308%2C277%2C329%22%20href%3D%22Loggin.bmml%22%20alt%3D%22Loggin%22%20id%3D%2214%22/%3E</map>
+        <selectedIndex>0</selectedIndex>
+        <text>Anfrage%20Erstellen%0A---%0AAnfragen%20Suchen%0A---%0AAntwort%20Best%E4tigen%0A---%0AOffene%20Anfragen%0A---%0AKontakte%0A---%0ATermine%0A---%0ALogout%0A---</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

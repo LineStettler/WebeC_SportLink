@@ -1,17 +1,17 @@
-<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="833" measuredH="605" mockupW="699" mockupH="591">
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="457" measuredH="605" mockupW="323" mockupH="591">
   <controls>
     <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="134" y="14" w="323" h="591" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
         <model>IPhone5</model>
       </controlProperties>
     </control>
-    <control controlID="5" controlTypeID="com.balsamiq.mockups::ComboBox" x="316" y="254" w="-1" h="-1" measuredW="71" measuredH="24" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::ComboBox" x="317" y="278" w="-1" h="-1" measuredW="71" measuredH="24" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <text>Segeln</text>
       </controlProperties>
     </control>
-    <control controlID="12" controlTypeID="com.balsamiq.mockups::Webcam" x="204" y="142" w="71" h="66" measuredW="177" measuredH="146" zOrder="3" locked="false" isInGroup="-1"/>
-    <control controlID="16" controlTypeID="__group__" x="202" y="252" w="86" h="66" measuredW="86" measuredH="66" zOrder="2" locked="false" isInGroup="-1">
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Webcam" x="196" y="151" w="79" h="70" measuredW="177" measuredH="146" zOrder="3" locked="false" isInGroup="-1"/>
+    <control controlID="16" controlTypeID="__group__" x="202" y="271" w="86" h="66" measuredW="86" measuredH="66" zOrder="2" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="0" controlTypeID="com.balsamiq.mockups::CheckBox" x="0" y="0" w="-1" h="-1" measuredW="64" measuredH="22" zOrder="0" locked="false" isInGroup="16">
           <controlProperties>
@@ -31,14 +31,14 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="249" y="381" w="92" h="46" measuredW="45" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+    <control controlID="17" controlTypeID="com.balsamiq.mockups::Button" x="249" y="400" w="92" h="46" measuredW="45" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
       <controlProperties>
         <href>Offene_Anfragen%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22115%2C367%2C207%2C413%22%20href%3D%22Offene_Anfragen.bmml%22%20alt%3D%22Offene_Anfragen%22%20id%3D%2217%22/%3E</map>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22115%2C386%2C207%2C432%22%20href%3D%22Offene_Anfragen.bmml%22%20alt%3D%22Offene_Anfragen%22%20id%3D%2217%22/%3E</map>
         <text>GO%21</text>
       </controlProperties>
     </control>
-    <control controlID="18" controlTypeID="__group__" x="286" y="191" w="101" h="27" measuredW="101" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+    <control controlID="18" controlTypeID="__group__" x="286" y="198" w="101" h="27" measuredW="101" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
       <groupChildrenDescriptors>
         <control controlID="0" controlTypeID="com.balsamiq.mockups::SubTitle" x="0" y="0" w="-1" h="-1" measuredW="101" measuredH="21" zOrder="0" locked="false" isInGroup="18">
           <controlProperties>
@@ -54,32 +54,12 @@
         </control>
       </groupChildrenDescriptors>
     </control>
-    <control controlID="33" controlTypeID="__group__" x="450" y="56" w="140" h="21" measuredW="140" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
-      <groupChildrenDescriptors>
-        <control controlID="0" controlTypeID="com.balsamiq.mockups::SubTitle" x="0" y="0" w="-1" h="-1" measuredW="140" measuredH="21" zOrder="0" locked="false" isInGroup="33">
-          <controlProperties>
-            <size>18</size>
-            <text>Anfragen%20Suchen</text>
-          </controlProperties>
-        </control>
-      </groupChildrenDescriptors>
-    </control>
-    <control controlID="34" controlTypeID="com.balsamiq.mockups::Button" x="770" y="278" w="-1" h="-1" measuredW="63" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+    <control controlID="37" controlTypeID="com.balsamiq.mockups::Image" x="374" y="120" w="33" h="24" measuredW="128" measuredH="118" zOrder="6" locked="false" isInGroup="-1">
       <controlProperties>
-        <href>Loggin%26bm%3BLoggin.bmml%26bm%3BLoggin.bmml%26bm%3BLoggin.bmml</href>
-        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22636%2C264%2C699%2C291%22%20href%3D%22Loggin.bmml%22%20alt%3D%22Loggin%22%20id%3D%2234%22/%3E</map>
-        <text>Logout</text>
-      </controlProperties>
-    </control>
-    <control controlID="35" controlTypeID="com.balsamiq.mockups::Image" x="377" y="118" w="25" h="24" measuredW="128" measuredH="118" zOrder="8" locked="false" isInGroup="-1">
-      <controlProperties>
-        <src>./assets/06_menu_stack-128.png</src>
+        <href>Anfragen_Suchen_menu%26bm%3BAnfragen_Suchen_menu.bmml%26bm%3BAnfragen_Suchen_menu.bmml%26bm%3BAnfragen_Suchen_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22240%2C106%2C273%2C130%22%20href%3D%22Anfragen_Suchen_menu.bmml%22%20alt%3D%22Anfragen_Suchen_menu%22%20id%3D%2237%22/%3E</map>
+        <src>../porject_git/Documents/Mockup/assets/06_menu_stack-128.png</src>
         <text/>
-      </controlProperties>
-    </control>
-    <control controlID="36" controlTypeID="com.balsamiq.mockups::Menu" x="497" y="142" w="162" h="-1" measuredW="150" measuredH="161" zOrder="9" locked="false" isInGroup="-1">
-      <controlProperties>
-        <text>Anfrage%20Erstellen%0A---%0AAnfragen%20Suchen%0A---%0AAntwort%20Best%E4tigen%0A---%0AOffene%20Anfragen%0A---%0AKontakte%0A---%0ALogout</text>
       </controlProperties>
     </control>
   </controls>

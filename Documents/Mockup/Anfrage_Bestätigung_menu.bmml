@@ -1,0 +1,70 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="955" measuredH="597" mockupW="507" mockupH="591">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="448" y="6" w="323" h="591" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Accordion" x="490" y="146" w="238" h="369" measuredW="203" measuredH="186" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>3</selectedIndex>
+        <text>%7Bcolor%3A%20blue%7DMeine%20Anfrage%3A%20Segeln%2025/04/16%7Bcolor%7D%0AZusage%3A%20Adrian%20Welch%0AZusage%3A%20Nils%20Egger%0AZusage%3A%20Alois%20Meier</text>
+        <value>9</value>
+        <verticalScrollbar>true</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::SubTitle" x="502" y="288" w="-1" h="-1" measuredW="51" measuredH="15" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>12</size>
+        <text>Nachricht</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::TextArea" x="501" y="300" w="200" h="66" measuredW="200" measuredH="140" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Hallo%20ich%20h%E4tte%20um%2017%3A00%20Uhr%20auch%20Zeit</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="521" y="437" w="160" h="32" measuredW="136" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Zusage%20Best%E4tigen</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::TextInput" x="521" y="398" w="160" h="-1" measuredW="79" measuredH="26" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>14540253</color>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="521" y="381" w="-1" h="-1" measuredW="57" measuredH="20" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>12</size>
+        <text>Telefon%20Nr</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::StickyNote" x="782" y="205" w="173" h="173" measuredW="109" measuredH="123" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <color>10470904</color>
+        <text>Wird%20eine%20Zusage%20best%E4tigt%2C%20soll%20die%20Anfrage%20automatisch%20gel%F6scht%20werden%20%28und%20die%20Personen%20die%20eine%20Zusage%20auf%20die%20Anfrage%20geschickt%20haben%2C%20sollen%20eine%20Absage%20erhalten</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::Menu" x="552" y="146" w="175" h="-1" measuredW="150" measuredH="187" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Anfrage_Erstellen%26bm%3BAnfrage_Erstellen.bmml%26bm%3BAnfrage_Erstellen.bmml%26bm%3BAnfrage_Erstellen.bmml%2C%2CAnfrage_Suchen%26bm%3BAnfrage_Suchen.bmml%26bm%3BAnfrage_Suchen.bmml%26bm%3BAnfrage_Suchen.bmml%2C%2CAnfrage_Besta%u0308tigen%26bm%3BAnfrage_Besta%u0308tigen.bmml%26bm%3BAnfrage_Besta%u0308tigen.bmml%26bm%3BAnfrage_Besta%u0308tigen.bmml%2C%2COffene_Anfragen%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml%2C%2CKontakte%26bm%3BKontakte.bmml%26bm%3BKontakte.bmml%26bm%3BKontakte.bmml%2C%2C%2C%2CLoggin%26bm%3BLoggin.bmml%26bm%3BLoggin.bmml%26bm%3BLoggin.bmml</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22104%2C145%2C279%2C166%22%20href%3D%22Anfrage_Erstellen.bmml%22%20alt%3D%22Anfrage_Erstellen%22%20id%3D%2213%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22104%2C171%2C279%2C192%22%20href%3D%22Anfrage_Suchen.bmml%22%20alt%3D%22Anfrage_Suchen%22%20id%3D%2213%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22104%2C197%2C279%2C218%22%20href%3D%22Anfrage_Besta%25CC%2588tigen.bmml%22%20alt%3D%22Anfrage_Besta%u0308tigen%22%20id%3D%2213%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22104%2C223%2C279%2C244%22%20href%3D%22Offene_Anfragen.bmml%22%20alt%3D%22Offene_Anfragen%22%20id%3D%2213%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22104%2C249%2C279%2C270%22%20href%3D%22Kontakte.bmml%22%20alt%3D%22Kontakte%22%20id%3D%2213%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22104%2C301%2C279%2C322%22%20href%3D%22Loggin.bmml%22%20alt%3D%22Loggin%22%20id%3D%2213%22/%3E</map>
+        <selectedIndex>0</selectedIndex>
+        <text>Anfrage%20Erstellen%0A---%0AAnfragen%20Suchen%0A---%0AAntwort%20Best%E4tigen%0A---%0AOffene%20Anfragen%0A---%0AKontakte%0A---%0ATermine%0A---%0ALogout</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::ModalScreen" x="490" y="146" w="238" h="369" measuredW="320" measuredH="240" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties/>
+    </control>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::Image" x="688" y="114" w="33" h="24" measuredW="128" measuredH="118" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>Anfrage_Besta%u0308tigen%26bm%3BAnfrage_Besta%u0308tigen.bmml%26bm%3BAnfrage_Besta%u0308tigen.bmml%26bm%3BAnfrage_Besta%u0308tigen.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22240%2C108%2C273%2C132%22%20href%3D%22Anfrage_Besta%25CC%2588tigen.bmml%22%20alt%3D%22Anfrage_Besta%u0308tigen%22%20id%3D%2215%22/%3E</map>
+        <src>./assets/06_menu_stack-128.png</src>
+        <text/>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
