@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="stylesheet.css" type="text/css" rel="stylesheet">
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <script src="lib/jquery-2.1.4.min.js"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+    <script src="app.js"></script>
+    <title>Sportlink</title>
+</head>
+<body>
+    <nav>
+        <ul id="navigation">
+            <li><img src="06_menu_stack-128.png" id="burger"/>
+                <ul >
+                    <li><a href="#Startseite" id="Startseite-Link">Startseite</a></li>
+                    <li><a href="#Offene_Anfragen" id="Offene_Anfragen-Link">Offene Anfragen</a></li>
+                    <li><a href="#Meine_Anfragen" id="Meine_Anfragen-Link">Meine Anfragen</a></li>
+                    <li><a href="#Anfrage_Erstellen" id="Anfrage_Erstellen-Link">Anfrage Erstellen</a></li>
+                    <li><a href="#Termine" id="Termine-Link">Termine</a></li>
+                    <li><a href="#Login" id="Logout-Link">Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <section id="Login">
+        <ul>
+            <li><input type="text" name="username" value="Username"/></li>
+            <li><input type="password" name="passwordLogin" value="Password"/></li>
+        </ul>
+        <button id="LoginButton"><a href="#Startseite">Los!</a></button>
+        <button id="RegisterLink"><a href="#Login">Registrieren</a></button>
+    </section>
+    <section id="Register">
+        <h2>Registrieren</h2>
+        <ul>
+            <li><input type="text" name="firstname" value="Vorname"/></li>
+            <li><input type="text" name="lastname" value="Nachname"/></li>
+            <li><input type="email" name="mail" value="Mail"/></li>
+            <li><input type="password" name="password" value="Password"/></li>
+            <li><input type="password" name="passwordBestätigen" value="Password"/></li>
+            <li><input type="text" name="ort" value="Ort"/></li>
+        </ul>
+        <button id="RegisterButton"><a href="#Login">Los!</a></button>
+    </section>
+    <section id="Startseite">
+        <h1>Sportlink</h1>
+        <text id="Username"></text>
+        <text id="Ort"></text>
+        <button id="OffeneAnfragenButton"><a href="#Offene_Anfrage">Offene Anfragen</a></button>
+        <button id="AnfrageErstellenButton"><a href="#Anfrage_Erstellen">Anfrage Erstellen</a></button>
+    </section>
+    <section id="Offene_Anfragen">
+        <h2>Offene Anfragen</h2>
+        <fieldset>
+            <input type="checkbox" name="category" value="Freizeit" />Freizeit <br/>
+            <input type="checkbox" name="category" value="Training" />Training<br/>
+            <input type="checkbox" name="category" value="Wetkampf" />Wetkampf<br/>
+            <select>
+                <option value="segeln">Segeln</option>
+                <option value="tennis">Tennis</option>
+                <option value="pingpong">PingPong</option>
+                <option value="badminton">Badminton</option>
+                <option value="squash">Squash</option>
+                <option value="rudern">Rudern</option>
+                <option value="kanu">Kanu</option>
+                <option value="tauchen">Tauchen</option>
+            </select>
+        </fieldset>
+        <div class="OffeneAnfragenListe">
+            <ul>
+
+            </ul>
+        </div>
+    </section>
+    <section id="Meine_Anfragen">
+        <h2>Meine Anfragen</h2>
+        <div class="MeineAnfragenListe">
+            <ul>
+
+            </ul>
+        </div>
+    </section>
+    <section id="Anfrage_Erstellen">
+        <h2>Anfrage Erstellen</h2>
+        <ul>
+            <li><input type="date" name="date" value="TT/MM/YY"/></li>
+            <li><input type="time" name="time" value="hh:mm"/></li>
+            <li><input type="text" name="ort" value="Ort"/></li>
+        </ul>
+        <fieldset>
+            <input type="checkbox" name="category" value="Freizeit" />Freizeit <br/>
+            <input type="checkbox" name="category" value="Training" />Training<br/>
+            <input type="checkbox" name="category" value="Wetkampf" />Wetkampf<br/>
+            <select>
+                <option value="segeln">Segeln</option>
+                <option value="tennis">Tennis</option>
+                <option value="pingpong">PingPong</option>
+                <option value="badminton">Badminton</option>
+                <option value="squash">Squash</option>
+                <option value="rudern">Rudern</option>
+                <option value="kanu">Kanu</option>
+                <option value="tauchen">Tauchen</option>
+            </select>
+        </fieldset>
+        <textarea>Text</textarea>
+        <button id="AnfrageErstelltButton"><a href="#Login">Los!</a></button>
+    </section>
+    <section id="Termine">
+        <h2>Termine</h2>
+        <div class="MeineTermineListe">
+            <ul>
+
+            </ul>
+        </div>
+    </section>
+
+</body>
+</html>

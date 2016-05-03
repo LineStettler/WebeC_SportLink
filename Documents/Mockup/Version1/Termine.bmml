@@ -1,0 +1,61 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="497" measuredH="627" mockupW="323" mockupH="591">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::iPhone" x="174" y="36" w="323" h="591" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::Accordion" x="216" y="185" w="238" h="357" measuredW="186" measuredH="186" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <text>Line%20Stettler%2C%20Do%2028.04.%2C%2014%3A30%0AAdrian%20Welch%2C%20Sa%2030.04.%2C%209%3A00%0ANils%20Egger%2C%20Sa%2006.05.%2C%2014%3A00%20%0AAlois%20Meier%2C%20Mo%2008.05.%2C%2015%3A00</text>
+        <value>9</value>
+        <verticalScrollbar>true</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="224" y="142" w="-1" h="-1" measuredW="73" measuredH="28" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>20</size>
+        <text>Termine</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="221" y="217" w="-1" h="-1" measuredW="149" measuredH="21" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Freizeit%3A%20Bootstyp%20Fireball</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Paragraph" x="218" y="287" w="275" h="45" measuredW="275" measuredH="80" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>12</size>
+        <text>%20%0A%3Eerste%20Jollen-Ehrfahrungen%20von%20Vorteil%0A%3EAusr%FCstung%20in%20gr%F6sse%20S%2CM%20vorhanden</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Image" x="270" y="257" w="19" h="16" measuredW="640" measuredH="531" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>../../../../projekt/assets/marker.png</src>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="com.balsamiq.mockups::Image" x="410" y="144" w="33" h="24" measuredW="128" measuredH="118" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>appointments%26bm%3Bappointments.bmml%26bm%3Bappointments.bmml%26bm%3Bappointments.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22236%2C108%2C269%2C132%22%20href%3D%22appointments.bmml%22%20alt%3D%22appointments%22%20id%3D%2211%22/%3E</map>
+        <src>../Version2/assets/06_menu_stack-128.png</src>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Button" x="270" y="350" w="-1" h="-1" measuredW="109" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>079%20123%2045%2067</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::ModalScreen" x="216" y="184" w="235" h="358" measuredW="320" measuredH="240" zOrder="8" locked="false" isInGroup="-1"/>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::Menu" x="279" y="185" w="175" h="-1" measuredW="150" measuredH="161" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Anfrage_Suchen%26bm%3BAnfrage_Suchen.bmml%26bm%3BAnfrage_Suchen.bmml%26bm%3BAnfrage_Suchen.bmml%2C%2COffene_Anfragen%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml%2C%2CMeine_Anfrage%26bm%3BMeine_Anfrage.bmml%26bm%3BMeine_Anfrage.bmml%26bm%3BMeine_Anfrage.bmml%2C%2CMeine_Anfrage%26bm%3BMeine_Anfrage.bmml%26bm%3BMeine_Anfrage.bmml%26bm%3BMeine_Anfrage.bmml%2C%2Cappointments%26bm%3Bappointments.bmml%26bm%3Bappointments.bmml%26bm%3Bappointments.bmml%2C%2CLoggin%26bm%3BLoggin.bmml%26bm%3BLoggin.bmml%26bm%3BLoggin.bmml</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C154%2C280%2C175%22%20href%3D%22Anfrage_Suchen.bmml%22%20alt%3D%22Anfrage_Suchen%22%20id%3D%2215%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C180%2C280%2C201%22%20href%3D%22Offene_Anfragen.bmml%22%20alt%3D%22Offene_Anfragen%22%20id%3D%2215%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C206%2C280%2C227%22%20href%3D%22Meine_Anfrage.bmml%22%20alt%3D%22Meine_Anfrage%22%20id%3D%2215%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C232%2C280%2C253%22%20href%3D%22Meine_Anfrage.bmml%22%20alt%3D%22Meine_Anfrage%22%20id%3D%2215%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C258%2C280%2C279%22%20href%3D%22appointments.bmml%22%20alt%3D%22appointments%22%20id%3D%2215%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C284%2C280%2C305%22%20href%3D%22Loggin.bmml%22%20alt%3D%22Loggin%22%20id%3D%2215%22/%3E</map>
+        <selectedIndex>8</selectedIndex>
+        <text>Startseite%0A---%0AOffene%20Anfragen%0A---%0AMeine%20Anfragen%0A---%0AAnfrage%20Erstellen%0A---%0ATermine%0A---%0ALogout</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

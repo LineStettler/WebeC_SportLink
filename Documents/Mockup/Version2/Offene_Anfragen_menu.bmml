@@ -1,0 +1,78 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="497" measuredH="627" mockupW="323" mockupH="591">
+  <controls>
+    <control controlID="20" controlTypeID="com.balsamiq.mockups::iPhone" x="174" y="36" w="323" h="591" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="21" controlTypeID="com.balsamiq.mockups::Accordion" x="216" y="222" w="238" h="320" measuredW="186" measuredH="186" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <text>Line%20Stettler%2C%20Do%2028.04.%2C%2014%3A30%0AAdrian%20Welch%2C%20Sa%2030.04.%2C%209%3A00%0ANils%20Egger%2C%20Sa%2030.04.%2C%2014%3A00%20%0AAlois%20Meier%2C%20Mo%2003.05.%2C%2015%3A00</text>
+        <value>9</value>
+        <verticalScrollbar>true</verticalScrollbar>
+      </controlProperties>
+    </control>
+    <control controlID="22" controlTypeID="com.balsamiq.mockups::Label" x="248" y="142" w="-1" h="-1" measuredW="83" measuredH="28" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>20</size>
+        <text>Anfragen</text>
+      </controlProperties>
+    </control>
+    <control controlID="23" controlTypeID="com.balsamiq.mockups::Map" x="220" y="274" w="85" h="53" measuredW="252" measuredH="222" zOrder="3" locked="false" isInGroup="-1"/>
+    <control controlID="24" controlTypeID="com.balsamiq.mockups::Label" x="221" y="252" w="-1" h="-1" measuredW="149" measuredH="21" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Freizeit%3A%20Bootstyp%20Fireball</text>
+      </controlProperties>
+    </control>
+    <control controlID="27" controlTypeID="com.balsamiq.mockups::Paragraph" x="218" y="319" w="-1" h="-1" measuredW="275" measuredH="80" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>12</size>
+        <text>%20%0A%3Eerste%20Jollen-Ehrfahrungen%20von%20Vorteil%0A%3EAusr%FCstung%20in%20gr%F6sse%20S%2CM%20vorhanden</text>
+      </controlProperties>
+    </control>
+    <control controlID="28" controlTypeID="com.balsamiq.mockups::Image" x="270" y="284" w="19" h="16" measuredW="640" measuredH="531" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <src>./assets/marker.png</src>
+      </controlProperties>
+    </control>
+    <control controlID="30" controlTypeID="com.balsamiq.mockups::Button" x="269" y="406" w="107" h="40" measuredW="75" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Zusagen</text>
+      </controlProperties>
+    </control>
+    <control controlID="74" controlTypeID="com.balsamiq.mockups::TextInput" x="262" y="369" w="121" h="-1" measuredW="53" measuredH="27" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Tel.%20Nr.</text>
+      </controlProperties>
+    </control>
+    <control controlID="76" controlTypeID="com.balsamiq.mockups::Button" x="248" y="186" w="79" h="27" measuredW="55" measuredH="27" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <state>selected</state>
+        <text>Privat</text>
+      </controlProperties>
+    </control>
+    <control controlID="77" controlTypeID="com.balsamiq.mockups::Button" x="320" y="186" w="-1" h="-1" measuredW="79" measuredH="27" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%D6ffentlich</text>
+      </controlProperties>
+    </control>
+    <control controlID="78" controlTypeID="com.balsamiq.mockups::Image" x="414" y="144" w="33" h="24" measuredW="128" measuredH="118" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>Offene_Anfragen%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22240%2C108%2C273%2C132%22%20href%3D%22Offene_Anfragen.bmml%22%20alt%3D%22Offene_Anfragen%22%20id%3D%2278%22/%3E</map>
+        <src>../porject_git/Documents/Mockup/assets/06_menu_stack-128.png</src>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="79" controlTypeID="com.balsamiq.mockups::Menu" x="279" y="177" w="175" h="-1" measuredW="150" measuredH="187" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <hrefs>Anfrage_Erstellen%26bm%3BAnfrage_Erstellen.bmml%26bm%3BAnfrage_Erstellen.bmml%26bm%3BAnfrage_Erstellen.bmml%2C%2CAnfrage_Suchen%26bm%3BAnfrage_Suchen.bmml%26bm%3BAnfrage_Suchen.bmml%26bm%3BAnfrage_Suchen.bmml%2C%2CAnfrage_Besta%u0308tigen%26bm%3BAnfrage_Besta%u0308tigen.bmml%26bm%3BAnfrage_Besta%u0308tigen.bmml%26bm%3BAnfrage_Besta%u0308tigen.bmml%2C%2COffene_Anfragen%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml%26bm%3BOffene_Anfragen.bmml%2C%2CKontakte%26bm%3BKontakte.bmml%26bm%3BKontakte.bmml%26bm%3BKontakte.bmml%2C%2Cappointments%26bm%3Bappointments.bmml%26bm%3Bappointments.bmml%26bm%3Bappointments.bmml%2C%2CLoggin%26bm%3BLoggin.bmml%26bm%3BLoggin.bmml%26bm%3BLoggin.bmml</hrefs>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C146%2C280%2C167%22%20href%3D%22Anfrage_Erstellen.bmml%22%20alt%3D%22Anfrage_Erstellen%22%20id%3D%2279%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C172%2C280%2C193%22%20href%3D%22Anfrage_Suchen.bmml%22%20alt%3D%22Anfrage_Suchen%22%20id%3D%2279%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C198%2C280%2C219%22%20href%3D%22Anfrage_Besta%25CC%2588tigen.bmml%22%20alt%3D%22Anfrage_Besta%u0308tigen%22%20id%3D%2279%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C224%2C280%2C245%22%20href%3D%22Offene_Anfragen.bmml%22%20alt%3D%22Offene_Anfragen%22%20id%3D%2279%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C250%2C280%2C271%22%20href%3D%22Kontakte.bmml%22%20alt%3D%22Kontakte%22%20id%3D%2279%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C276%2C280%2C297%22%20href%3D%22appointments.bmml%22%20alt%3D%22appointments%22%20id%3D%2279%22/%3E%3Carea%20shape%3D%22rect%22%20coords%3D%22105%2C302%2C280%2C323%22%20href%3D%22Loggin.bmml%22%20alt%3D%22Loggin%22%20id%3D%2279%22/%3E</map>
+        <selectedIndex>0</selectedIndex>
+        <text>Anfrage%20Erstellen%0A---%0AAnfragen%20Suchen%0A---%0AAntwort%20Best%E4tigen%0A---%0AOffene%20Anfragen%0A---%0AKontakte%0A---%0ATermine%0A---%0ALogout</text>
+      </controlProperties>
+    </control>
+    <control controlID="80" controlTypeID="com.balsamiq.mockups::ModalScreen" x="217" y="177" w="235" h="365" measuredW="320" measuredH="240" zOrder="12" locked="false" isInGroup="-1"/>
+  </controls>
+</mockup>

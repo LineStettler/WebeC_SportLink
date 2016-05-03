@@ -1,0 +1,59 @@
+<mockup version="1.0" skin="sketch" fontFace="Balsamiq Sans" measuredW="847" measuredH="654" mockupW="282" mockupH="612">
+  <controls>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::iPhone" x="565" y="42" w="282" h="612" measuredW="282" measuredH="573" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <model>IPhone5</model>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::SearchBox" x="595" y="213" w="-1" h="-1" measuredW="120" measuredH="25" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>search</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::Accordion" x="595" y="248" w="223" h="299" measuredW="150" measuredH="213" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>-1</selectedIndex>
+        <text>Fritz%20Meier%0AHans%20Ebi%0AAngela%20M%FCller%0AHerbert%20Kunz%0ASabine%20Holz</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Button" x="777" y="249" w="-1" h="-1" measuredW="27" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>-</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::Button" x="777" y="276" w="-1" h="-1" measuredW="27" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>-</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::Button" x="777" y="303" w="-1" h="-1" measuredW="27" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>-</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Button" x="777" y="330" w="-1" h="-1" measuredW="27" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>-</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Button" x="777" y="357" w="-1" h="-1" measuredW="27" measuredH="27" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>-</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Label" x="595" y="170" w="-1" h="-1" measuredW="83" measuredH="28" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <size>20</size>
+        <text>Kontakte</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::Image" x="779" y="163" w="33" h="24" measuredW="128" measuredH="118" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <href>Kontakte_menu%26bm%3BKontakte_menu.bmml%26bm%3BKontakte_menu.bmml%26bm%3BKontakte_menu.bmml</href>
+        <map>%3Carea%20shape%3D%22rect%22%20coords%3D%22214%2C121%2C247%2C145%22%20href%3D%22Kontakte_menu.bmml%22%20alt%3D%22Kontakte_menu%22%20id%3D%2210%22/%3E</map>
+        <src>../porject_git/Documents/Mockup/assets/06_menu_stack-128.png</src>
+        <text/>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
