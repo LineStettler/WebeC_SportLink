@@ -1,37 +1,41 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
+<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
 <html lang="en">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <head>
     <meta charset="UTF-8">
-    <script src="lib/jquery-2.1.4.min.js"></script>
+    <script src="lib/jquery-2.2.3.min.js"></script>
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
     <script src="js/app.js"></script>
+	<script src="lib/bootstrap.min.js"></script>
+    
     <title>Sportlink</title>
 </head>
 <body>
-    <nav>
-        <ul id="navigation">
-            <li><img src="img/06_menu_stack-128.png" id="burger"/>
-                <ul >
+	<nav class="dropdown">
+	  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><img src="img/06_menu_stack-128.png" id="burger"/><span class="caret"></span></button>
+	  <ul class="dropdown-menu" id="navigation">
                     <li><a href="#Startseite" id="Startseite-Link">Startseite</a></li>
                     <li><a href="#Offene_Anfragen" id="Offene_Anfragen-Link">Offene Anfragen</a></li>
                     <li><a href="#Meine_Anfragen" id="Meine_Anfragen-Link">Meine Anfragen</a></li>
                     <li><a href="#Anfrage_Erstellen" id="Anfrage_Erstellen-Link">Anfrage Erstellen</a></li>
                     <li><a href="#Termine" id="Termine-Link">Termine</a></li>
                     <li><a href="#Login" id="Logout-Link">Logout</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
-    <section id="Login">
-        <ul>
-            <li><input type="text" name="username" value="Username"/></li>
-            <li><input type="password" name="passwordLogin" value="Password"/></li>
-        </ul>
-        <button id="LoginButton"><a href="#Startseite">Los!</a></button>
-        <button id="RegisterLink"><a href="#Login">Registrieren</a></button>
+             
+	  </ul>
+	</nav>
+    <section id="Login" class="container">
+		<form class="form-signin">
+			<input type="text" class="input-block-level" placeholder="Username">
+			<input type="password" class="input-block-level" placeholder="Password">
+			<label class="checkbox">
+			  <input type="checkbox" value="remember-me"> Remember me
+			</label>
+			<button class="btn btn-large btn-primary" type="submit">Sign in</button>
+			<button class="btn btn-large btn-primary" type="submit">Register</button>
+		</form>
     </section>
     <section id="Register">
         <h2>Registrieren</h2>
