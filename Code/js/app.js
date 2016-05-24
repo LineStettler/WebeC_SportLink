@@ -41,11 +41,14 @@ $(document).ready(function() {
     $('#Logout-Link').click( function(){
         showSection(LOGIN);
     });
-    $('#LoginButton').click( function(){
+    $('#ButtonSignIn').click( function(){
         showSection(STARTSEITE);
     });
-    $('#RegisterLink').click( function(){
+    $('#ButtonRegister').click( function(){
         showSection(REGISTER);
+    });
+    $('#RegisterButton').click( function(){
+        showSection(LOGIN);
     });
     $('#OffeneAnfragenButton').click( function(){
         showSection(OFFENEANFRAGEN);

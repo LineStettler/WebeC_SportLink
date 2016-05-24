@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="css/stylesheet.css" type="text/css" rel="stylesheet">
 <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="css/stylesheet.css" type="text/css" rel="stylesheet">
 <html lang="en">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <head>
@@ -14,116 +14,221 @@
     <title>Sportlink</title>
 </head>
 <body>
-	<nav class="dropdown">
-	  <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"><img src="img/06_menu_stack-128.png" id="burger"/><span class="caret"></span></button>
-	  <ul class="dropdown-menu" id="navigation">
-                    <li><a href="#Startseite" id="Startseite-Link">Startseite</a></li>
-                    <li><a href="#Offene_Anfragen" id="Offene_Anfragen-Link">Offene Anfragen</a></li>
-                    <li><a href="#Meine_Anfragen" id="Meine_Anfragen-Link">Meine Anfragen</a></li>
-                    <li><a href="#Anfrage_Erstellen" id="Anfrage_Erstellen-Link">Anfrage Erstellen</a></li>
-                    <li><a href="#Termine" id="Termine-Link">Termine</a></li>
-                    <li><a href="#Login" id="Logout-Link">Logout</a></li>
-             
-	  </ul>
-	</nav>
-    <section id="Login" class="container">
-		<form class="form-signin">
-			<input type="text" class="input-block-level" placeholder="Username">
-			<input type="password" class="input-block-level" placeholder="Password">
-			<label class="checkbox">
-			  <input type="checkbox" value="remember-me"> Remember me
-			</label>
-			<button class="btn btn-large btn-primary" type="submit">Sign in</button>
-			<button class="btn btn-large btn-primary" type="submit">Register</button>
-		</form>
-    </section>
-    <section id="Register">
-        <h2>Registrieren</h2>
-        <ul>
-            <li><input type="text" name="firstname" value="Vorname"/></li>
-            <li><input type="text" name="lastname" value="Nachname"/></li>
-            <li><input type="email" name="mail" value="Mail"/></li>
-            <li><input type="password" name="password" value="Password"/></li>
-            <li><input type="password" name="passwordBestätigen" value="Password"/></li>
-            <li><input type="text" name="ort" value="Ort"/></li>
-        </ul>
-        <button id="RegisterButton"><a href="#Login">Los!</a></button>
-    </section>
-    <section id="Startseite">
-        <h1>Sportlink</h1>
-        <text id="Username"></text>
-        <text id="Ort"></text>
-        <button id="OffeneAnfragenButton"><a href="#Offene_Anfrage">Offene Anfragen</a></button>
-        <button id="AnfrageErstellenButton"><a href="#Anfrage_Erstellen">Anfrage Erstellen</a></button>
-    </section>
-    <section id="Offene_Anfragen">
-        <h2>Offene Anfragen</h2>
-        <fieldset>
-            <input type="checkbox" name="category" value="Freizeit" />Freizeit <br/>
-            <input type="checkbox" name="category" value="Training" />Training<br/>
-            <input type="checkbox" name="category" value="Wetkampf" />Wetkampf<br/>
-            <select>
-                <option value="segeln">Segeln</option>
-                <option value="tennis">Tennis</option>
-                <option value="pingpong">PingPong</option>
-                <option value="badminton">Badminton</option>
-                <option value="squash">Squash</option>
-                <option value="rudern">Rudern</option>
-                <option value="kanu">Kanu</option>
-                <option value="tauchen">Tauchen</option>
-                <option value="fussball">Fussball</option>
-                <option value="basketball">Basketball</option>
-            </select>
-        </fieldset>
-        <div class="OffeneAnfragenListe">
-            <ul>
+    <main>
+        <nav class="dropdown">
+          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="img/06_menu_stack-128.png" id="burger"/><span class="caret"></span></button>
+          <ul class="dropdown-menu" id="navigation">
+            <li><a href="#Startseite" id="Startseite-Link">Startseite</a></li>
+            <li><a href="#Offene_Anfragen" id="Offene_Anfragen-Link">Offene Anfragen</a></li>
+            <li><a href="#Meine_Anfragen" id="Meine_Anfragen-Link">Meine Anfragen</a></li>
+            <li><a href="#Anfrage_Erstellen" id="Anfrage_Erstellen-Link">Anfrage Erstellen</a></li>
+            <li><a href="#Termine" id="Termine-Link">Termine</a></li>
+            <li><a href="#Login" id="Logout-Link">Logout</a></li>
+          </ul>
+        </nav>
+        <div class="wrap">
+            <section id="Login" class="container">
+                <form class="form-signin">
+                    <input type="text" class="input-block-level" placeholder="Username">
+                    <input type="password" class="input-block-level" placeholder="Password">
+                    <label class="checkbox">
+                      <input type="checkbox" value="remember-me"> Remember me
+                    </label>
+                    <button id="ButtonSignIn" class="btn btn-default" type="submit">Sign in</button>
+                    <button id="ButtonRegister" class="btn btn-default" type="submit">Register</button>
+                </form>
+            </section>
+            <section id="Register" class="container">
+                <h2>Registrieren</h2>
+                <ul>
+                    <li><input type="text" name="firstname" value="Vorname"/></li>
+                    <li><input type="text" name="lastname" value="Nachname"/></li>
+                    <li><input type="email" name="mail" value="Mail"/></li>
+                    <li><input type="password" name="password" value="Password"/></li>
+                    <li><input type="password" name="passwordBestätigen" value="Password"/></li>
+                    <li><input type="text" name="ort" value="Ort"/></li>
+                </ul>
+                <button id="RegisterButton" class="btn btn-default">Los!</button>
+            </section>
+            <section id="Startseite" class="container">
+                <h1>Sportlink</h1>
+                <text id="Username"></text>
+                <text id="Ort"></text>
+                <button id="OffeneAnfragenButton" class="btn btn-default">Offene Anfragen</button>
+                <button id="AnfrageErstellenButton" class="btn btn-default">Anfrage Erstellen</button>
+            </section>
+            <section id="Offene_Anfragen" class="container">
+                <h2>Offene Anfragen</h2>
+                <fieldset>
+                    <input type="checkbox" name="category" value="Freizeit" />Freizeit <br/>
+                    <input type="checkbox" name="category" value="Training" />Training<br/>
+                    <input type="checkbox" name="category" value="Wettkampf" />Wettkampf<br/>
+                    <select>
+                        <option value="segeln">Segeln</option>
+                        <option value="tennis">Tennis</option>
+                        <option value="pingpong">PingPong</option>
+                        <option value="badminton">Badminton</option>
+                        <option value="squash">Squash</option>
+                        <option value="rudern">Rudern</option>
+                        <option value="kanu">Kanu</option>
+                        <option value="tauchen">Tauchen</option>
+                        <option value="fussball">Fussball</option>
+                        <option value="basketball">Basketball</option>
+                    </select>
+                </fieldset>
+                <div class="OffeneAnfragenListe">
+                    <div class="panel-group" id="accordion">
+                        <div class="panel panel-default" id="panel1">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-target="#collapseOne"
+                                       href="#collapseOne">
+                                        Collapsible Group Item #1
+                                    </a>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in">
+                                <div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft.</div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default" id="panel2">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-target="#collapseTwo"
+                                       href="#collapseTwo" class="collapsed">
+                                        Collapsible Group Item #2
+                                    </a>
+                                </h5>
 
-            </ul>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">Brunch 3 wolf moon tempor,  ble, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default" id="panel3">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-target="#collapseThree"
+                                       href="#collapseThree" class="collapsed">
+                                        Collapsible Group Item #3
+                                    </a>
+                                </h5>
+
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body">Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+            <section id="Meine_Anfragen" class="container">
+                <h2>Meine Anfragen</h2>
+                <div class="MeineAnfragenListe">
+                    <ul>
+
+                    </ul>
+                </div>
+            </section>
+            <section id="Anfrage_Erstellen" class="container">
+                <h2>Anfrage Erstellen</h2>
+                <ul>
+                    <li><input type="date" name="date" value="TT/MM/YY"/></li>
+                    <li><input type="time" name="time" value="hh:mm"/></li>
+                    <li><input type="text" name="ort" value="Ort"/></li>
+                </ul>
+                <fieldset>
+                    <input type="checkbox" name="category" value="Freizeit" />Freizeit <br/>
+                    <input type="checkbox" name="category" value="Training" />Training<br/>
+                    <input type="checkbox" name="category" value="Wettkampf" />Wettkampf<br/>
+                    <select>
+                        <option value="segeln">Segeln</option>
+                        <option value="tennis">Tennis</option>
+                        <option value="pingpong">PingPong</option>
+                        <option value="badminton">Badminton</option>
+                        <option value="squash">Squash</option>
+                        <option value="rudern">Rudern</option>
+                        <option value="kanu">Kanu</option>
+                        <option value="tauchen">Tauchen</option>
+                        <option value="fussball">Fussball</option>
+                        <option value="basketball">Basketball</option>
+                    </select>
+                </fieldset>
+                <textarea>Text</textarea>
+                <button id="AnfrageErstelltButton" class="btn btn-default"><a href="#Login">Los!</a></button>
+            </section>
+            <section id="Termine" class="container">
+                <h2>Termine</h2>
+                <div class="MeineTermineListe">
+                    <div class="panel-group">
+                        <div class="panel panel-default" id="panel4">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-target="#collapseFour"
+                                       href="#collapseFour">
+                                        Max Meier, Do 30.06.2016, 17:30
+                                    </a>
+                                </h5>
+
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <h6>Freizeit: Pingpong </h6>
+                                    <ul>
+                                        <li>Schläger und Netz vorhanden</li>
+                                        <li>Ist draussen, also ensprechende Kleidung</li>
+                                        <li><button class="btn btn-default">tel: 079 5833003</button></li>
+                                    </ul>
+                                </div>
+                        </div>
+                            </div>
+                        <div class="panel panel-default" id="panel5">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-target="#collapseFife"
+                                       href="#collapseFife" class="collapsed">
+                                        Fabian Müller, Sa 03.07.2016, 18:30
+                                    </a>
+                                </h5>
+
+                            </div>
+                            <div id="collapseFife" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <h6>Freizeit: Pingpong </h6>
+                                    <ul>
+                                        <li>Schläger und Netz vorhanden</li>
+                                        <li>Ist draussen, also ensprechende Kleidung</li>
+                                        <li><button class="btn btn-default">tel: 079 5833003</button></li>
+                                    </ul>
+                                </div>
+                        </div>
+                            </div>
+                        <div class="panel panel-default" id="panel6">
+                            <div class="panel-heading">
+                                <h5 class="panel-title">
+                                    <a data-toggle="collapse" data-target="#collapseSix"
+                                       href="#collapseSix" class="collapsed">
+                                        Sebastian Schlauch, Di 25.07.2016, 12:00
+                                    </a>
+                                </h5>
+
+                            </div>
+                            <div id="collapseSix" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <h6>Freizeit: Pingpong </h6>
+                                    <ul>
+                                        <li>Schläger und Netz vorhanden</li>
+                                        <li>Ist draussen, also ensprechende Kleidung</li>
+                                        <li><button class="btn btn-default">tel: 079 5833003</button></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
-    </section>
-    <section id="Meine_Anfragen">
-        <h2>Meine Anfragen</h2>
-        <div class="MeineAnfragenListe">
-            <ul>
-
-            </ul>
-        </div>
-    </section>
-    <section id="Anfrage_Erstellen">
-        <h2>Anfrage Erstellen</h2>
-        <ul>
-            <li><input type="date" name="date" value="TT/MM/YY"/></li>
-            <li><input type="time" name="time" value="hh:mm"/></li>
-            <li><input type="text" name="ort" value="Ort"/></li>
-        </ul>
-        <fieldset>
-            <input type="checkbox" name="category" value="Freizeit" />Freizeit <br/>
-            <input type="checkbox" name="category" value="Training" />Training<br/>
-            <input type="checkbox" name="category" value="Wetkampf" />Wetkampf<br/>
-            <select>
-                <option value="segeln">Segeln</option>
-                <option value="tennis">Tennis</option>
-                <option value="pingpong">PingPong</option>
-                <option value="badminton">Badminton</option>
-                <option value="squash">Squash</option>
-                <option value="rudern">Rudern</option>
-                <option value="kanu">Kanu</option>
-                <option value="tauchen">Tauchen</option>
-                <option value="fussball">Fussball</option>
-                <option value="basketball">Basketball</option>
-            </select>
-        </fieldset>
-        <textarea>Text</textarea>
-        <button id="AnfrageErstelltButton"><a href="#Login">Los!</a></button>
-    </section>
-    <section id="Termine">
-        <h2>Termine</h2>
-        <div class="MeineTermineListe">
-            <ul>
-
-            </ul>
-        </div>
-    </section>
-
+    </main>
 </body>
 </html>

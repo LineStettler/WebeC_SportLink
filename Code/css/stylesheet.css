@@ -1,26 +1,70 @@
 html{
     position: relative;
-    min-height: 100%;
+    max-height: 100%;
     background-color: whitesmoke;
 }
+
 body{
-    margin: 0 0 80px; /* bottom = footer height */
-    font-size: 25px;
-    background-color: aliceblue;
-    font-family: "Helvetica Neue", black;
-   /* box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);*/
+    height: 100%;
+    padding:20px;
+    margin: 20px;
 }
-nav{
-    position:relative;
-    width:620px;
-    margin:0 auto;
-    margin-top:50px;
-    padding:10px;
+
+main {
+    flex: 1;
+    display: flex;
+}
+.wrap{
+    height: 100vh;
+    display: flex;
+}
+.panel-heading a:after {
+    font-family:'Glyphicons Halflings';
+    content:"\e114";
+    float: right;
+    color: grey;
+}
+.panel-heading a.collapsed:after {
+    content:"\e080";
 }
 #burger{
     width:30px;
     height: 20px;
 }
- .form-signin {
+
+nav{
+    padding: 5px;
+}
+
+ul{
+    list-style: none;
+}
+
+select{
+    margin: 5px;
+    margin-left: 0px;
+
+}
+.panel-group{
+    overflow-y: scroll;
+    flex: 1;
+}
+@media (max-width: 800px) {
+    main {
+        flex-direction: column;
+    }
+}
+.panel{
+    font-size: 12px;
+    max-width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 7px;
+    border-color: rgba(191, 209, 232, 0.44);
+    background-color: aliceblue;
+    padding: 5px;
+}
+
+.form-signin {
         max-width: 300px;
-		}
+}
