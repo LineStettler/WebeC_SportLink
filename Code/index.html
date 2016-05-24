@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<!--<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<link type="text/scss" rel="stylesheet" href="sass/materialize.scss"  media="screen,projection"/>
 <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
 <html lang="en">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,43 +12,80 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
     <script src="js/app.js"></script>
 	<script src="lib/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
     
     <title>Sportlink</title>
 </head>
 <body>
     <main>
-        <nav class="dropdown">
-          <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown"><img src="img/06_menu_stack-128.png" id="burger"/><span class="caret"></span></button>
-          <ul class="dropdown-menu" id="navigation">
-            <li><a href="#Startseite" id="Startseite-Link">Startseite</a></li>
-            <li><a href="#Offene_Anfragen" id="Offene_Anfragen-Link">Offene Anfragen</a></li>
-            <li><a href="#Meine_Anfragen" id="Meine_Anfragen-Link">Meine Anfragen</a></li>
-            <li><a href="#Anfrage_Erstellen" id="Anfrage_Erstellen-Link">Anfrage Erstellen</a></li>
-            <li><a href="#Termine" id="Termine-Link">Termine</a></li>
-            <li><a href="#Login" id="Logout-Link">Logout</a></li>
-          </ul>
-        </nav>
+        <header>
+            <nav>
+                <ul id="slide-out" class="side-nav" value="Sportlink">
+                    <li><a href="#Startseite" id="Startseite-Link">Startseite</a></li>
+                    <li><a href="#Offene_Anfragen" id="Offene_Anfragen-Link">Offene Anfragen</a></li>
+                    <li><a href="#Meine_Anfragen" id="Meine_Anfragen-Link">Meine Anfragen</a></li>
+                    <li><a href="#Anfrage_Erstellen" id="Anfrage_Erstellen-Link">Anfrage Erstellen</a></li>
+                    <li><a href="#Termine" id="Termine-Link">Termine</a></li>
+                    <li><a href="#Login" id="Logout-Link">Logout</a></li>
+                </ul>
+                <a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"><img src="img/06_menu_stack-128.png" id="burger"/></i></a>
+            </nav>
+        </header>
         <div class="wrap">
             <section id="Login" class="container">
                 <form class="form-signin">
-                    <input type="text" class="input-block-level" placeholder="Username">
-                    <input type="password" class="input-block-level" placeholder="Password">
-                    <label class="checkbox">
-                      <input type="checkbox" value="remember-me"> Remember me
-                    </label>
+                    <h3>Login</h3>
+                    <div class="input-field">
+                        <input type="text" class="input-block-level" id="username" class="validate">
+                        <label class="active" for="username">Username</label>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="input-block-level" id="passwordLogin" class="validate">
+                        <label class="active" for="passwordLogin">Password</label>
+                    </div>
                     <button id="ButtonSignIn" class="btn btn-default" type="submit">Sign in</button>
                     <button id="ButtonRegister" class="btn btn-default" type="submit">Register</button>
                 </form>
             </section>
             <section id="Register" class="container">
-                <h2>Registrieren</h2>
+                <h3>Registrieren</h3>
                 <ul>
-                    <li><input type="text" name="firstname" value="Vorname"/></li>
-                    <li><input type="text" name="lastname" value="Nachname"/></li>
-                    <li><input type="email" name="mail" value="Mail"/></li>
-                    <li><input type="password" name="password" value="Password"/></li>
-                    <li><input type="password" name="passwordBestätigen" value="Password"/></li>
-                    <li><input type="text" name="ort" value="Ort"/></li>
+                    <li>
+                        <div class="input-field">
+                            <input type="text" id="firstname"  class="validate"/>
+                            <label class="active" for="firstname">Vorname</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-field">
+                            <input type="text" id="lastname" class="validate"/>
+                            <label class="active" for="lastname">Nachname</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-field">
+                            <input type="email" id="mail" class="validate"/>
+                            <label class="active" for="mail">Mail</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-field">
+                            <input type="password" id="password" class="validate"/>
+                            <label class="active" for="password">Password</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-field">
+                            <input type="password" id="passwordBestätigen" class="validate"/>
+                            <label class="active" for="passwordBestätigen">Password</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-field">
+                            <input type="text" id="ort" class="validate"/>
+                            <label class="active" for="ort">Ort</label>
+                        </div>
+                    </li>
                 </ul>
                 <button id="RegisterButton" class="btn btn-default">Los!</button>
             </section>
@@ -58,175 +97,160 @@
                 <button id="AnfrageErstellenButton" class="btn btn-default">Anfrage Erstellen</button>
             </section>
             <section id="Offene_Anfragen" class="container">
-                <h2>Offene Anfragen</h2>
-                <fieldset>
-                    <input type="checkbox" name="category" value="Freizeit" />Freizeit <br/>
-                    <input type="checkbox" name="category" value="Training" />Training<br/>
-                    <input type="checkbox" name="category" value="Wettkampf" />Wettkampf<br/>
+                <h3>Offene Anfragen</h3>
+                <form action="#">
+                    <p>
+                        <input type="checkbox" id="check4" />
+                        <label for="check4">Freizeit</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="check5"/>
+                        <label for="check5">Training</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="check6"/>
+                        <label for="check6">Wettkampf</label>
+                    </p>
+                </form>
+                <div class="input-field">
                     <select>
-                        <option value="segeln">Segeln</option>
-                        <option value="tennis">Tennis</option>
-                        <option value="pingpong">PingPong</option>
-                        <option value="badminton">Badminton</option>
-                        <option value="squash">Squash</option>
-                        <option value="rudern">Rudern</option>
-                        <option value="kanu">Kanu</option>
-                        <option value="tauchen">Tauchen</option>
-                        <option value="fussball">Fussball</option>
-                        <option value="basketball">Basketball</option>
+                        <option value="" disabled selected>Sportart wählen</option>
+                        <option value="1">Segeln</option>
+                        <option value="2">Tennis</option>
+                        <option value="3">PingPong</option>
+                        <option value="4">Badminton</option>
+                        <option value="5">Squash</option>
+                        <option value="6">Rudern</option>
+                        <option value="7">Kanu</option>
+                        <option value="8">Tauchen</option>
+                        <option value="9">Fussball</option>
+                        <option value="10">Basketball</option>
                     </select>
-                </fieldset>
-                <div class="OffeneAnfragenListe">
-                    <div class="panel-group" id="accordion">
-                        <div class="panel panel-default" id="panel1">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-target="#collapseOne"
-                                       href="#collapseOne">
-                                        Collapsible Group Item #1
-                                    </a>
-                                </h5>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse in">
-                                <div class="panel-body">Anim pariatur cliche reprehenderit, enim eiusmod sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft.</div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default" id="panel2">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-target="#collapseTwo"
-                                       href="#collapseTwo" class="collapsed">
-                                        Collapsible Group Item #2
-                                    </a>
-                                </h5>
-
-                            </div>
-                            <div id="collapseTwo" class="panel-collapse collapse">
-                                <div class="panel-body">Brunch 3 wolf moon tempor,  ble, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</div>
-                            </div>
-                        </div>
-                        <div class="panel panel-default" id="panel3">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-target="#collapseThree"
-                                       href="#collapseThree" class="collapsed">
-                                        Collapsible Group Item #3
-                                    </a>
-                                </h5>
-
-                            </div>
-                            <div id="collapseThree" class="panel-collapse collapse">
-                                <div class="panel-body">Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid.</div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Max Meier, Do 30.06.2016, 17:30</div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Fabio Felber, Mi 06.07.2016, 17:30</div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Sarah Sahner, Sa 11.07.2016, 17:30</div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                </ul>
             </section>
             <section id="Meine_Anfragen" class="container">
-                <h2>Meine Anfragen</h2>
-                <div class="MeineAnfragenListe">
-                    <ul>
-
-                    </ul>
-                </div>
+                <h3>Meine Anfragen</h3>
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Max Meier, Do 30.06.2016, 17:30</div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Fabio Felber, Mi 06.07.2016, 17:30</div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Sarah Sahner, Sa 11.07.2016, 17:30</div>
+                        <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+                    </li>
+                </ul>
             </section>
             <section id="Anfrage_Erstellen" class="container">
-                <h2>Anfrage Erstellen</h2>
+                <h3>Anfrage Erstellen</h3>
                 <ul>
-                    <li><input type="date" name="date" value="TT/MM/YY"/></li>
-                    <li><input type="time" name="time" value="hh:mm"/></li>
-                    <li><input type="text" name="ort" value="Ort"/></li>
+                    <li>
+                        <div class="input-field">
+                            <input type="date" id="date" class="datepicker"/>
+                            <label class="active" for="date">Datum Auswählen</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-field">
+                            <input type="time" id="time" class="timepicker"/>
+                            <label class="active" for="time">hh:mm</label>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="input-field">
+                            <input type="text" id="ortErstellen" class="validate"/>
+                            <label class="active" for="ortErstellen">Ort</label>
+                        </div>
+                    </li>
                 </ul>
-                <fieldset>
-                    <input type="checkbox" name="category" value="Freizeit" />Freizeit <br/>
-                    <input type="checkbox" name="category" value="Training" />Training<br/>
-                    <input type="checkbox" name="category" value="Wettkampf" />Wettkampf<br/>
+                <form action="#">
+                    <p>
+                        <input type="checkbox" id="check1" />
+                        <label for="check1">Freizeit</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="check2"/>
+                        <label for="check2">Training</label>
+                    </p>
+                    <p>
+                        <input type="checkbox" id="check3"/>
+                        <label for="check3">Wettkampf</label>
+                    </p>
+                </form>
+                <div class="input-field">
                     <select>
-                        <option value="segeln">Segeln</option>
-                        <option value="tennis">Tennis</option>
-                        <option value="pingpong">PingPong</option>
-                        <option value="badminton">Badminton</option>
-                        <option value="squash">Squash</option>
-                        <option value="rudern">Rudern</option>
-                        <option value="kanu">Kanu</option>
-                        <option value="tauchen">Tauchen</option>
-                        <option value="fussball">Fussball</option>
-                        <option value="basketball">Basketball</option>
+                        <option value="" disabled selected>Sportart wählen</option>
+                        <option value="1">Segeln</option>
+                        <option value="2">Tennis</option>
+                        <option value="3">PingPong</option>
+                        <option value="4">Badminton</option>
+                        <option value="5">Squash</option>
+                        <option value="6">Rudern</option>
+                        <option value="7">Kanu</option>
+                        <option value="8">Tauchen</option>
+                        <option value="9">Fussball</option>
+                        <option value="10">Basketball</option>
                     </select>
-                </fieldset>
-                <textarea>Text</textarea>
-                <button id="AnfrageErstelltButton" class="btn btn-default"><a href="#Login">Los!</a></button>
+                </div>
+                <div class="input-field">
+                    <textarea class="materialize-textarea" id="textarea"></textarea>
+                    <label for="textarea">Text</label>
+                </div>
+                <button id="AnfrageErstelltButton" class="btn btn-default">Los!</button>
             </section>
             <section id="Termine" class="container">
-                <h2>Termine</h2>
-                <div class="MeineTermineListe">
-                    <div class="panel-group">
-                        <div class="panel panel-default" id="panel4">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-target="#collapseFour"
-                                       href="#collapseFour">
-                                        Max Meier, Do 30.06.2016, 17:30
-                                    </a>
-                                </h5>
-
-                            </div>
-                            <div id="collapseFour" class="panel-collapse collapse in">
-                                <div class="panel-body">
-                                    <h6>Freizeit: Pingpong </h6>
-                                    <ul>
-                                        <li>Schläger und Netz vorhanden</li>
-                                        <li>Ist draussen, also ensprechende Kleidung</li>
-                                        <li><button class="btn btn-default">tel: 079 5833003</button></li>
-                                    </ul>
-                                </div>
+                <h3>Termine</h3>
+                <ul class="collapsible" data-collapsible="accordion">
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Max Meier, Do 30.06.2016, 17:30</div>
+                        <div class="collapsible-body"><h6>Freizeit: Pingpong </h6>
+                            <ul>
+                                <li>Schläger und Netz vorhanden</li>
+                                <li>Ist draussen, also ensprechende Kleidung</li>
+                                <li><a href="#!">tel: 079 5833003</a></li>
+                            </ul>
                         </div>
-                            </div>
-                        <div class="panel panel-default" id="panel5">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-target="#collapseFife"
-                                       href="#collapseFife" class="collapsed">
-                                        Fabian Müller, Sa 03.07.2016, 18:30
-                                    </a>
-                                </h5>
-
-                            </div>
-                            <div id="collapseFife" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <h6>Freizeit: Pingpong </h6>
-                                    <ul>
-                                        <li>Schläger und Netz vorhanden</li>
-                                        <li>Ist draussen, also ensprechende Kleidung</li>
-                                        <li><button class="btn btn-default">tel: 079 5833003</button></li>
-                                    </ul>
-                                </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Fabio Felber, Mi 06.07.2016, 17:30</div>
+                        <div class="collapsible-body"><h6>Freizeit: Pingpong </h6>
+                            <ul>
+                                <li>Schläger und Netz vorhanden</li>
+                                <li>Ist draussen, also ensprechende Kleidung</li>
+                                <li><a href="#!">tel: 079 5833003</a></li>
+                            </ul>
                         </div>
-                            </div>
-                        <div class="panel panel-default" id="panel6">
-                            <div class="panel-heading">
-                                <h5 class="panel-title">
-                                    <a data-toggle="collapse" data-target="#collapseSix"
-                                       href="#collapseSix" class="collapsed">
-                                        Sebastian Schlauch, Di 25.07.2016, 12:00
-                                    </a>
-                                </h5>
-
-                            </div>
-                            <div id="collapseSix" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <h6>Freizeit: Pingpong </h6>
-                                    <ul>
-                                        <li>Schläger und Netz vorhanden</li>
-                                        <li>Ist draussen, also ensprechende Kleidung</li>
-                                        <li><button class="btn btn-default">tel: 079 5833003</button></li>
-                                    </ul>
-                                </div>
-                            </div>
+                    </li>
+                    <li>
+                        <div class="collapsible-header"><i class="material-icons"></i>Sarah Sahner, Sa 11.07.2016, 17:30</div>
+                        <div class="collapsible-body">
+                            <h6>Freizeit: Pingpong </h6>
+                            <ul>
+                                <li>Schläger und Netz vorhanden</li>
+                                <li>Ist draussen, also ensprechende Kleidung</li>
+                                <li><a href="#!">tel: 079 5833003</a></li>
+                            </ul>
                         </div>
-                    </div>
-                </div>
+                    </li>
+                </ul>
             </section>
         </div>
     </main>

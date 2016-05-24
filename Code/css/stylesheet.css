@@ -28,12 +28,21 @@ main {
     content:"\e080";
 }
 #burger{
-    width:30px;
-    height: 20px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
 }
 
+#start{
+    background-color: #009688 ;
+}
+
+#icon{
+    font-style: oblique ;
+    color: aqua;
+}
 nav{
-    padding: 5px;
+    padding: 4px;
 }
 
 ul{
@@ -57,9 +66,6 @@ select{
 .panel{
     font-size: 12px;
     max-width: 100%;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 7px;
     border-color: rgba(191, 209, 232, 0.44);
     background-color: aliceblue;
     padding: 5px;
