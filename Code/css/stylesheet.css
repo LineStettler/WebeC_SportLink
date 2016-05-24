@@ -33,18 +33,28 @@ main {
     margin-bottom: 10px;
 }
 
-#start{
-    background-color: #009688 ;
+#Start{
+    background-color: #ef5350 ;
 }
 
 #icon{
     font-style: oblique ;
-    color: aqua;
+    color: #009688;
+    text-align: center;
+    margin-top: 120px;
+    margin-bottom: 50px;
+}
+
+button{
+    margin-top: 20px;
 }
 nav{
     padding: 4px;
 }
 
+h3{
+    text-align: center;
+}
 ul{
     list-style: none;
 }

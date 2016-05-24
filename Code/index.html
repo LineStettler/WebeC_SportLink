@@ -2,7 +2,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <!--<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">-->
 <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-<link type="text/scss" rel="stylesheet" href="sass/materialize.scss"  media="screen,projection"/>
 <link href="css/stylesheet.css" type="text/css" rel="stylesheet">
 <html lang="en">
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,7 +18,7 @@
 <body>
     <main>
         <header>
-            <nav>
+            <nav id="navigation">
                 <ul id="slide-out" class="side-nav" value="Sportlink">
                     <li><a href="#Startseite" id="Startseite-Link">Startseite</a></li>
                     <li><a href="#Offene_Anfragen" id="Offene_Anfragen-Link">Offene Anfragen</a></li>
@@ -32,6 +31,10 @@
             </nav>
         </header>
         <div class="wrap">
+            <section id="Start" class="container">
+                <h2 id="icon">SportLink</h2>
+                <div style="text-align:center;"><button id="ButtonLogin" class="btn btn-default" type="submit">Sign in</button></div>
+            </section>
             <section id="Login" class="container">
                 <form class="form-signin">
                     <h3>Login</h3>
@@ -43,8 +46,10 @@
                         <input type="password" class="input-block-level" id="passwordLogin" class="validate">
                         <label class="active" for="passwordLogin">Password</label>
                     </div>
-                    <button id="ButtonSignIn" class="btn btn-default" type="submit">Sign in</button>
-                    <button id="ButtonRegister" class="btn btn-default" type="submit">Register</button>
+                    <div style="text-align:center;">
+                        <button id="ButtonSignIn" class="btn btn-default" type="submit">Sign in</button>
+                        <button id="ButtonRegister" class="btn btn-default" type="submit">Registrieren</button>
+                    </div>
                 </form>
             </section>
             <section id="Register" class="container">
@@ -87,14 +92,18 @@
                         </div>
                     </li>
                 </ul>
-                <button id="RegisterButton" class="btn btn-default">Los!</button>
+                <div style="text-align:center;">
+                    <button id="RegisterButton" class="btn btn-default">Los!</button>
+                </div>
             </section>
             <section id="Startseite" class="container">
-                <h1>Sportlink</h1>
+                <h3>Sportlink</h3>
                 <text id="Username"></text>
                 <text id="Ort"></text>
-                <button id="OffeneAnfragenButton" class="btn btn-default">Offene Anfragen</button>
-                <button id="AnfrageErstellenButton" class="btn btn-default">Anfrage Erstellen</button>
+                <div style="text-align:center;">
+                    <button id="OffeneAnfragenButton" class="btn btn-default">Offene Anfragen</button>
+                    <button id="AnfrageErstellenButton" class="btn btn-default">Anfrage Erstellen</button>
+                </div>
             </section>
             <section id="Offene_Anfragen" class="container">
                 <h3>Offene Anfragen</h3>
@@ -214,7 +223,9 @@
                     <textarea class="materialize-textarea" id="textarea"></textarea>
                     <label for="textarea">Text</label>
                 </div>
-                <button id="AnfrageErstelltButton" class="btn btn-default">Los!</button>
+                <div style="text-align:center;">
+                    <button id="AnfrageErstelltButton" class="btn btn-default">Los!</button>
+                </div>
             </section>
             <section id="Termine" class="container">
                 <h3>Termine</h3>

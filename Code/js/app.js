@@ -1,7 +1,7 @@
 /**
  * Created by Line on 03/05/16.
  */
-
+var START ='#Start'
 var LOGIN = '#Login';
 var REGISTER = '#Register';
 var STARTSEITE = '#Startseite';
@@ -16,8 +16,8 @@ function showSection(id){
 }
 
 $(document).ready(function() {
-    showSection(LOGIN);
-    //$('#navigation').hide();
+    showSection(START);
+    $('#navigation').hide();
 
     $('#buger').click( function(){
         $('#navigation').show();
@@ -46,6 +46,10 @@ $(document).ready(function() {
     });
     $('#ButtonRegister').click( function(){
         showSection(REGISTER);
+    });
+    $('#ButtonLogin').click( function(){
+        showSection(LOGIN);
+        $('#navigation').show();
     });
     $('#RegisterButton').click( function(){
         showSection(LOGIN);
