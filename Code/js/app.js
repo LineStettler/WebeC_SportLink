@@ -96,5 +96,48 @@ $(document).ready(function() {
         selectYears: 15 // Creates a dropdown of 15 years to control year
     });
 
+    //am/pm
+    $('#timepicker_ampm').pickatime();
+    $('#timepicker_ampm_dark').pickatime({
+        darktheme: true
+    });
+    //24
+    $('#timepicker_24').pickatime({
+        twelvehour: false
+    });
+    $('#timepicker_24_dark').pickatime({
+        darktheme: true,
+        twelvehour: false
+    });
+    //default
+    $('#timepicker_default').pickatime({
+        default: 'now'
+    });
+    //fromnow
+    $('#timepicker_fromnow').pickatime({
+        default: 'now',
+        fromnow: 5 * 1000 * 60
+    });
+    //donetext
+    $('#timepicker_donetext').pickatime({
+        donetext: 'set'
+    });
+    //autoclose
+    $('#timepicker_autoclose').pickatime({
+        autoclose: true
+    });
+    //ampmclickable
+    $('#timepicker_ampmclickable').pickatime({
+        ampmclickable: true
+    });
+    $('#timepicker_ampmclickable_dark').pickatime({
+        ampmclickable: true,
+        darktheme: true
+    });
+    //vibrate
+    $('#timepicker_vibrate').pickatime({
+        vibrate: true
+    });
+
 
 });
