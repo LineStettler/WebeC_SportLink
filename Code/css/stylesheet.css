@@ -52,10 +52,16 @@ nav{
     padding: 4px;
 }
 
+h2{
+    text-align: center;
+    font-size: 2.50em;
+    opacity: 0.8;
+ }
+
 h3{
     text-align: center;
-    font-size: 0;
- }
+    font-size: 0em;
+}
 
 h6{
     text-align: center;

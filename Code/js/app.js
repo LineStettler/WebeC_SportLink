@@ -10,13 +10,20 @@ var MEINEANFRAGEN = '#Meine_Anfragen';
 var ANFRAGEERSTELLEN = '#Anfrage_Erstellen';
 var TERMINE = '#Termine';
 
-function showSection(id){
-    $('section').hide();
-    $(id).show();
+// shows Section with id excluding NavBar
+function showSectionWithoutNav(id){
+    $('section').hide(); // hides current section
+    $(id).show(); //shows new section
+    $('#navigation').hide(); //hides NavBar
+    $
 }
 
-function changeTitle(title){
-    $("h6").text(title);
+// shows Section with id and title including NavBar
+function showSection(id, title){
+    $('section').hide(); // hides current section
+    $(id).show(); // shows new section
+    $('#navigation').show(); // shows NavBar
+    $("h6").text(title); // sets wanted title on NavBar
 }
 
 $(document).ready(function() {
@@ -28,56 +35,55 @@ $(document).ready(function() {
     });
 
     $('#Startseite-Link').click( function(){
-        showSection(STARTSEITE);
-        changeTitle("SportLink");
+        showSection(STARTSEITE, "SportLink");
     });
+
     $('#Offene_Anfragen-Link').click( function(){
-        showSection(OFFENEANFRAGEN);
-        changeTitle("Offene Anfragen");
+        showSection(OFFENEANFRAGEN, "Offene Anfragen");
     });
+
     $('#Meine_Anfragen-Link').click( function(){
-        showSection(MEINEANFRAGEN);
-        changeTitle("Meine Anfragen");
+        showSection(MEINEANFRAGEN, "Meine Anfragen");
     });
+
     $('#Anfrage_Erstellen-Link').click( function(){
-        showSection(ANFRAGEERSTELLEN);
-        changeTitle("Anfrage Erstellen");
+        showSection(ANFRAGEERSTELLEN, "Anfrage Erstellen");
     });
+
     $('#Termine-Link').click( function(){
-        showSection(TERMINE);
-        changeTitle("Termine");
+        showSection(TERMINE, "Termine");
     });
+
     $('#Logout-Link').click( function(){
-        showSection(LOGIN);
+        showSectionWithoutNav(LOGIN);
     });
+
     $('#ButtonSignIn').click( function(){
-        showSection(STARTSEITE);
-        changeTitle("SportLink");
+        showSection(STARTSEITE, "SportLink");
     });
+
     $('#ButtonRegister').click( function(){
-        showSection(REGISTER);
-        changeTitle("Register");
+        showSectionWithoutNav(REGISTER);
     });
+
     $('#ButtonLogin').click( function(){
-        showSection(LOGIN);
-        $('#navigation').show();
-        changeTitle("Login");
+        showSectionWithoutNav(LOGIN);
     });
+
     $('#RegisterButton').click( function(){
-        showSection(LOGIN);
-        changeTitle("Login");
+        showSectionWithoutNav(LOGIN);
     });
+
     $('#OffeneAnfragenButton').click( function(){
-        showSection(OFFENEANFRAGEN);
-        changeTitle("Offene Anfragen");
+        showSection(OFFENEANFRAGEN, "Offene Anfragen");
     });
+
     $('#AnfrageErstellenButton').click( function(){
-        showSection(ANFRAGEERSTELLEN);
-        changeTitle("Anfrage Erstellen");
+        showSection(ANFRAGEERSTELLEN, "Anfrage Erstellen");
     });
+
     $('#AnfrageErstelltButton').click( function(){
-        showSection(MEINEANFRAGEN);
-        changeTitle("Meine Anfragen");
+        showSection(MEINEANFRAGEN, "Meine Anfragen");
     });
 
     $('.button-collapse').sideNav({
