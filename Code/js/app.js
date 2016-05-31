@@ -15,6 +15,10 @@ function showSection(id){
     $(id).show();
 }
 
+function changeTitle(title){
+    $("h6").text(title);
+}
+
 $(document).ready(function() {
     showSection(START);
     $('#navigation').hide();
@@ -25,55 +29,55 @@ $(document).ready(function() {
 
     $('#Startseite-Link').click( function(){
         showSection(STARTSEITE);
-        $("h6").text("SportLink");
+        changeTitle("SportLink");
     });
     $('#Offene_Anfragen-Link').click( function(){
         showSection(OFFENEANFRAGEN);
-        $("h6").text("Offene Anfragen");
+        changeTitle("Offene Anfragen");
     });
     $('#Meine_Anfragen-Link').click( function(){
         showSection(MEINEANFRAGEN);
-        $("h6").text("Meine Anfragen");
+        changeTitle("Meine Anfragen");
     });
     $('#Anfrage_Erstellen-Link').click( function(){
         showSection(ANFRAGEERSTELLEN);
-        $("h6").text("Anfrage Erstellen");
+        changeTitle("Anfrage Erstellen");
     });
     $('#Termine-Link').click( function(){
         showSection(TERMINE);
-        $("h6").text("Termine");
+        changeTitle("Termine");
     });
     $('#Logout-Link').click( function(){
         showSection(LOGIN);
     });
     $('#ButtonSignIn').click( function(){
         showSection(STARTSEITE);
-        $("h6").text("SportLink");
+        changeTitle("SportLink");
     });
     $('#ButtonRegister').click( function(){
         showSection(REGISTER);
-        $("h6").text("Register");
+        changeTitle("Register");
     });
     $('#ButtonLogin').click( function(){
         showSection(LOGIN);
         $('#navigation').show();
-        $("h6").text("Login");
+        changeTitle("Login");
     });
     $('#RegisterButton').click( function(){
         showSection(LOGIN);
-        $("h6").text("Login");
+        changeTitle("Login");
     });
     $('#OffeneAnfragenButton').click( function(){
         showSection(OFFENEANFRAGEN);
-        $("h6").text("Offene Anfragen");
+        changeTitle("Offene Anfragen");
     });
     $('#AnfrageErstellenButton').click( function(){
         showSection(ANFRAGEERSTELLEN);
-        $("h6").text("Anfrage Erstellen");
+        changeTitle("Anfrage Erstellen");
     });
     $('#AnfrageErstelltButton').click( function(){
         showSection(MEINEANFRAGEN);
-        $("h6").text("Meine Anfragen");
+        changeTitle("Meine Anfragen");
     });
 
     $('.button-collapse').sideNav({
