@@ -33,20 +33,17 @@ function showSection(id, title)
 
 function login()
 {
-	alert("hi");
-    var user = $.post("http://localhost/webec/rest.php/login",
+	var user = $.post("http://localhost/webec/rest.php/login",
         {
             username: $('#username').text(),
             password: $('#passwordLogin').text()
         }
     ).fail(function(jqxhr, textStatus, error)
     {
-	   alert("");
-       $('#passwordLogin').addClass('invalid').removeClass('validate');
+	   $('#passwordLogin').addClass('invalid').removeClass('validate');
        $('#username').addClass('invalid').removeClass('validate');
     });
-	alert("");
-    return user;
+	return user;
 }
 
 
