@@ -9,6 +9,8 @@ var OFFENEANFRAGEN = '#Offene_Anfragen';
 var MEINEANFRAGEN = '#Meine_Anfragen';
 var ANFRAGEERSTELLEN = '#Anfrage_Erstellen';
 var TERMINE = '#Termine';
+var restURL = '';
+var user;
 
 // shows Section with id excluding NavBar
 function showSectionWithoutNav(id)
@@ -29,39 +31,38 @@ function showSection(id, title)
 
 //*************************************DataLogin*********************************//
 
- var function login()
+function login()
 {
-    var user = $.getJson("/rest.php/login",
+	alert("hi");
+    var user = $.post("http://localhost/webec/rest.php/login",
         {
-            username: $('#username').text();
-            password: $('#passwordLogin').text();
+            username: $('#username').text(),
+            password: $('#passwordLogin').text()
         }
     ).fail(function(jqxhr, textStatus, error)
     {
-        if(textStatus == "invalid username") //TODO: nachricht muss noch angeglichen werden
-        $('#passwordLogin').addClass('invalid').removeClass('validate');
-        if(textStatus == "invalid password") //TODO: nachricht muss noch angeglichen werden
-        $('#username').addClass('invalid').removeClass('validate');
-        else
-            alert(textStatus + " " + error);
-    }
+	   alert("");
+       $('#passwordLogin').addClass('invalid').removeClass('validate');
+       $('#username').addClass('invalid').removeClass('validate');
+    });
+	alert("");
     return user;
-});
+}
 
 
 
  //***********************************DataRegister*********************************//
- function register()
+function register()
  {
      if ($('#password').text() == $('#passwordBestätigung').text())
      {
          $.getJson("/Rest.php/register",
          {
-             username: $('#firstname').text();
-             lastname: $('#lastname').text();
-             mail: $('#mail').text();
-             password: $('#password').text();
-             ort: $('#ort').text();
+             username: $('#firstname').text(),
+             lastname: $('#lastname').text(),
+             mail: $('#mail').text(),
+             password: $('#password').text(),
+             ort: $('#ort').text()
          }).fail(function (jqxhr, textStatus, error)
          {
             alert("sending register data to database failed")
@@ -82,22 +83,22 @@ Content-Type: application/json; charset=UTF-8
 */
 
  //*******************************load OffeneAnfragen*********************************//
- var function offeneAnfragen()
+function offeneAnfragen()
 {
      var myPlace = getLatLng(getSelectedLocation());
      var html;
      var anfrage = $.getJson("/rest.php/offeneAnfragen", function( json )
      {
-         for(int i = 0; i<json.length; ++i)
+         for(i = 0; i<json.length; ++i)
          {
 
              if(json[i].userid != user.userid) {
 
-                 html = '<li>
-                 < div class = "collapsible-header" >
-                 json[i].userid.firstname + " " + json[i].userid.lastname + "," + json[i].date + "," + json[i].time < / div >
-                 < div class = "collapsible-body" > < p > jason[i].comment < br > < br > < a > jason[i].telnr < / a > < / p > < / div >
-                 < / li > ';
+                 html = '<li>'
+                 +'< div class = "collapsible-header" >'
+                 +'json[i].userid.firstname + " " + json[i].userid.lastname + "," + json[i].date + "," + json[i].time < / div >'
+                 +'< div class = "collapsible-body" > < p > jason[i].comment < br > < br > < a > jason[i].telnr < / a > < / p > < / div >'
+                 +'< / li > ';
 
                  $('#anfragen').append(html);
              }
@@ -111,10 +112,10 @@ Content-Type: application/json; charset=UTF-8
  {
      $.getJson("/rest.php/offeneAnfragen",
      {
-         userid: user.userid;
-         anfrageid: anfrage.anfrageid;
-         comment: $('.anfrageZusagen').parent().find('p').text();
-         telnr: $('.anfrageZusagen').parent().find('a').text();
+         userid: user.userid,
+         anfrageid: anfrage.anfrageid,
+         comment: $('.anfrageZusagen').parent().find('p').text(),
+         telnr: $('.anfrageZusagen').parent().find('a').text(),
      }).fail(function (jqxhr, textStatus, error)
      {
         alert(textStatus + " " + error);
@@ -127,15 +128,15 @@ Content-Type: application/json; charset=UTF-8
      $.getJson("/rest.php/termine", function(json)
      {
          var html;
-         for(int i = 0; i<json.length; ++i)
+         for(i = 0; i<json.length; ++i)
          {
              var anfragePlace = getLatLng(json[i].location);
             if(json[i].userid==user.userid && json[i].isopen == false && getMatches(myPlace, anfragePlace))
             {
-                 html = '<li>< div class = "collapsible-header">
-                 json[i].userid.firstname + " " + json[i].userid.lastname + "," + json[i].date + "," + json[i].time < / div >
-                 < div class = "collapsible-body" > < p > jason[i].comment < br > < br > < a > jason[i].telnr < / a > < / p > < / div >
-                 < / li > ';
+                 html = '<li>< div class = "collapsible-header">'
+                 +'json[i].userid.firstname + " " + json[i].userid.lastname + "," + json[i].date + "," + json[i].time < / div >'
+                 +'< div class = "collapsible-body" > < p > jason[i].comment < br > < br > < a > jason[i].telnr < / a > < / p > < / div >'
+                 +'< / li > ';
                  $(TERMINE).find('ul').appendChild(html);
              }
          }
@@ -250,7 +251,8 @@ $(document).ready(function() {
     });
 
     $('#ButtonSignIn').click( function(){
-        showSection(STARTSEITE, "SportLink");
+		login();
+        //showSection(STARTSEITE, "SportLink");
     });
 
     $('#ButtonRegister').click( function(){
