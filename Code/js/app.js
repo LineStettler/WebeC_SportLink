@@ -9,34 +9,49 @@ var OFFENEANFRAGEN = '#Offene_Anfragen';
 var MEINEANFRAGEN = '#Meine_Anfragen';
 var ANFRAGEERSTELLEN = '#Anfrage_Erstellen';
 var TERMINE = '#Termine';
-var restURL = '';
+var restURL = 'http://localhost:8080/webec/rest.php/';
 var user;
 
-// shows Section with id excluding NavBar
+/**
+ * Shows section with id excluding NavBar
+ *
+ * @param id    Id of section
+ */
 function showSectionWithoutNav(id)
 {
-    $('section').hide(); // hides current section
+    $('section').hide(); // hides all sections
     $(id).show(); //shows new section
     $('#navigation').hide(); //hides NavBar
 }
 
-// shows Section with id and title including NavBar
+/**
+ * shows Section with id and title including NavBar
+ *
+ * @param id   Id of section
+ * @param title Title of section
+ */
 function showSection(id, title)
 {
-    $('section').hide(); // hides current section
+    $('section').hide(); // hides all sections
     $('#navigation').show(); // shows NavBar
     $(id).show(); // shows new section
     $("h6").text(title); // sets wanted title on NavBar
 }
 
-//*************************************DataLogin*********************************//
 
+//TODO is not working, because server aborts login, even if the sent data is correct
+/**
+ * sends login data to server and if it is valid, userdata is returned.
+ * Otherwise password and username gets marked
+ *
+ * @return user if username and password are valid
+ */
 function login()
 {
-	var user = $.post("http://localhost/webec/rest.php/login",
+	var user = $.post(restURL + 'login',
         {
-            username: $('#username').text(),
-            password: $('#passwordLogin').text()
+            username: $('#username').val(),
+            password: CryptoJS.MD5($('#passwordLogin').val())
         }
     ).fail(function(jqxhr, textStatus, error)
     {
@@ -47,19 +62,20 @@ function login()
 }
 
 
-
- //***********************************DataRegister*********************************//
+/**
+ * sends user data to server
+ */
 function register()
  {
-     if ($('#password').text() == $('#passwordBestätigung').text())
+     if ($('#password').val() == $('#passwordBestätigung').val())
      {
-         $.getJson("/Rest.php/register",
+         $.post(restURL +'register',
          {
-             username: $('#firstname').text(),
-             lastname: $('#lastname').text(),
-             mail: $('#mail').text(),
-             password: $('#password').text(),
-             ort: $('#ort').text()
+             username: $('#firstname').val(),
+             lastname: $('#lastname').val(),
+             mail: $('#mail').val(),
+             password: CryptoJS.MD5($('#password').val()),
+             ort: $('#ort').val()
          }).fail(function (jqxhr, textStatus, error)
          {
             alert("sending register data to database failed")
@@ -67,62 +83,65 @@ function register()
      }
  }
 
-/*
-POST /Rest.php/register HTTP/1.1
-Host: 127.0.0.1
-Content-Type: application/json; charset=UTF-8
-{   "username": $('#firstname').text(),
-    "lastname": $('#lastname').text(),
-    "mail": $('#mail').text(),
-    "password": $('#password').text(),
-    "ort": $('#ort').text()
-}
-*/
-
- //*******************************load OffeneAnfragen*********************************//
+/**
+ * Adds all open request to dom
+ *
+ * @return Array with all requests
+ */
 function offeneAnfragen()
 {
      var myPlace = getLatLng(getSelectedLocation());
      var html;
-     var anfrage = $.getJson("/rest.php/offeneAnfragen", function( json )
+     var anfragePlace
+     var anfrage = $.get(restURL+ 'offeneAnfragen', function( json )
      {
          for(i = 0; i<json.length; ++i)
          {
+             anfragePlace = getLatLng(json[i].location);
+             if(json[i].userid != user.userid &&                        //is not form user itself
+                 json[i].isopen == true &&                              //is still open
+                 getMatches(myPlace, anfragePlace) &&                   //is within radius
+                 json[i].freizeit == $('#freizeit2').val() &&           //has same categories set as selectet by checkboxes
+                 json[i].training == $('#training2').val() &&
+                 json[i].wettkampf == $('#wettkampf2').val()&&
+                 json[i].sportart == $('#sports').val()){
 
-             if(json[i].userid != user.userid) {
-
-                 html = '<li>'
+                 html = ['<li>'
                  +'< div class = "collapsible-header" >'
                  +'json[i].userid.firstname + " " + json[i].userid.lastname + "," + json[i].date + "," + json[i].time < / div >'
                  +'< div class = "collapsible-body" > < p > jason[i].comment < br > < br > < a > jason[i].telnr < / a > < / p > < / div >'
-                 +'< / li > ';
+                 +'< / li > '];
 
-                 $('#anfragen').append(html);
+                 $('#anfragen').append(html.join(''));
              }
          }
      });
      return anfrage;
  }
 
- //*******************************OffeneAnfrage gets Zusage*********************************//
- function zusagen()
+/**
+ * sends comment and tel nbr of the confirmation to server
+ */
+function zusagen()
  {
-     $.getJson("/rest.php/offeneAnfragen",
+     $.get(restURL+ 'offeneAnfragen',
      {
          userid: user.userid,
          anfrageid: anfrage.anfrageid,
-         comment: $('.anfrageZusagen').parent().find('p').text(),
-         telnr: $('.anfrageZusagen').parent().find('a').text(),
+         comment: $('.anfrageZusagen').parent().find('p').val(),
+         telnr: $('.anfrageZusagen').parent().find('a').val(),
      }).fail(function (jqxhr, textStatus, error)
      {
         alert(textStatus + " " + error);
      });
  }
 
- //*********************************Termine************************//
+/**
+ * adds all confirmed requests to users list of appointments
+ */
  function termine()
  {
-     $.getJson("/rest.php/termine", function(json)
+     $.get(restURL + 'termine', function(json)
      {
          var html;
          for(i = 0; i<json.length; ++i)
@@ -130,11 +149,11 @@ function offeneAnfragen()
              var anfragePlace = getLatLng(json[i].location);
             if(json[i].userid==user.userid && json[i].isopen == false && getMatches(myPlace, anfragePlace))
             {
-                 html = '<li>< div class = "collapsible-header">'
+                 html = ['<li>< div class = "collapsible-header">'
                  +'json[i].userid.firstname + " " + json[i].userid.lastname + "," + json[i].date + "," + json[i].time < / div >'
                  +'< div class = "collapsible-body" > < p > jason[i].comment < br > < br > < a > jason[i].telnr < / a > < / p > < / div >'
-                 +'< / li > ';
-                 $(TERMINE).find('ul').appendChild(html);
+                 +'< / li > '];
+                 $(TERMINE).find('ul').appendChild(html.join(''));
              }
          }
      }).fail(function (jqxhr, textStatus, error)
@@ -143,56 +162,42 @@ function offeneAnfragen()
      });
  }
 
-//**************************************selectAnfragenWithinRadius***************//
+/**
+ * Gets location name of user as string
+ *
+ * @return  LocationName the user selected by register
+ */
 function getSelectedLocation()
 {
-    //$("input[type='text'][name='location']:text");
-    return $('#ort').text();
-    log($('#ort').text());
+    return $('#ort').val();
+    log($('#ort').val());
 }
 
+/**
+ * Gets radius from slider input
+ *
+ * @return selected radius
+ */
 function getSelectedRadius()
 {
-    //$("input[type='number'][name='radius']:value");
     log($('#radius').val());
     return $('#radius').val();
 }
 
-/*function initialize() {
-    var address = getSelectedLocation();
-    var autocomplete = new google.maps.places.Autocomplete(address);
-    autocomplete.setTypes(['geocode']);
-    google.maps.event.addListener(autocomplete, 'place_changed', function () {
-        var place = autocomplete.getPlace();
-        if (!place.geometry) {
-            return;
-        }
-
-        var address = '';
-        if (place.address_components) {
-            address = [
-                (place.address_components[0] && place.address_components[0].short_name || ''),
-                (place.address_components[1] && place.address_components[1].short_name || ''),
-                (place.address_components[2] && place.address_components[2].short_name || '')
-            ].join(' ');
-        }
-    });
-}*/
-
-//get latitude and longitude of a location name
+/**
+ * gets latitude and longitude of a location name
+ *
+ * @param location  name of location
+ * @return LatLng   object of location
+ */
 function getLatLng(location)
 {
-    var options = {
-        types: ['geocode'],
-        componentRestrictions: {country: 'ch'}//Switzerland only
-    };
     geocoder = new google.maps.Geocoder();
-    var autocomplete = new google.maps.places.Autocomplete(location,options); //autocompletes the location
-    geocoder.geocode( { 'places': autocomplete}, function(results, status) {
+    geocoder.geocode( { 'address': location}, function(results, status)
+    {
         if (status == google.maps.GeocoderStatus.OK) {
-            Console.log(result[0].geometry.location.lat());
+            console.log(result[0].geometry.location.lat());
             return new google.maps.LatLng(results[0].geometry.location.lat(), result[0].geometry.location.lng());
-            //results[0].geometry.location.lng();
         }
         else
         {
@@ -201,74 +206,95 @@ function getLatLng(location)
     });
 }
 
-//tests if the distance of a request location is within the radius
+/**
+ * checks if the distance of a requested place is within the radius of myPlace
+ *
+ * @param myPlace   place user chose by registration
+ * @param anfragePlace  place of Request
+ *
+ * @return if anfragePlace is within the selected radius of myPlace
+ */
 function getMatches(myPlace, anfragePlace)
 {
-    if(computeDistanceBetween(myPlace, anfragePlace) <= getSelectedRadius())
-        return true;
-    return flase;
+    return google.maps.geometry.spherical.computeDistanceBetween(myPlace, anfragePlace) <= getSelectedRadius();
 }
 
 $(document).ready(function() {
     showSectionWithoutNav(START);
     //$('#navigation').hide();
 
-    $('#buger').click( function(){
+    $('#buger').click( function(e){
+        e.preventDefault();
         $('#navigation').show();
     });
 
-    $('#ButtonLogin').click( function(){
+    $('#ButtonLogin').click( function(e){
+        e.preventDefault();
         //showSectionWithoutNav(LOGIN);
         showSection(LOGIN, "LOGIN NUR IM MOMENT")
     });
 
-    $('#Startseite-Link').click( function(){
+    $('#Startseite-Link').click( function(e){
+        e.preventDefault();
         showSection(STARTSEITE, "SportLink");
 
     });
 
-    $('#Offene_Anfragen-Link').click( function(){
+    $('#Offene_Anfragen-Link').click( function(e){
+        e.preventDefault();
         showSection(OFFENEANFRAGEN, "Offene Anfragen");
     });
 
-    $('#Meine_Anfragen-Link').click( function(){
+    $('#Meine_Anfragen-Link').click( function(e){
+        e.preventDefault();
         showSection(MEINEANFRAGEN, "Meine Anfragen");
     });
 
-    $('#Anfrage_Erstellen-Link').click( function(){
+    $('#Anfrage_Erstellen-Link').click( function(e){
+        e.preventDefault();
         showSection(ANFRAGEERSTELLEN, "Anfrage Erstellen");
     });
 
-    $('#Termine-Link').click( function(){
+    $('#Termine-Link').click( function(e){
+        e.preventDefault();
         showSection(TERMINE, "Termine");
     });
 
-    $('#Logout-Link').click( function(){
+    $('#Logout-Link').click( function(e){
+        e.preventDefault();
         showSectionWithoutNav(LOGIN);
     });
 
-    $('#ButtonSignIn').click( function(){
-		login();
-        //showSection(STARTSEITE, "SportLink");
+    $('#ButtonSignIn').click( function(e){
+        e.preventDefault();
+		//login();
+        //getLatLng("Kriens");
+        //alert(google.maps.geometry.spherical.computeDistanceBetween(getLatLng("Meggen"), getLatLng("Luzern")));
+        showSection(STARTSEITE, "SportLink");
     });
 
-    $('#ButtonRegister').click( function(){
+    $('#ButtonRegister').click( function(e){
+        e.preventDefault();
         showSectionWithoutNav(REGISTER);
     });
 
-    $('#RegisterButton').click( function(){
+    $('#RegisterButton').click( function(e){
+        e.preventDefault();
         showSectionWithoutNav(LOGIN);
     });
 
-    $('#OffeneAnfragenButton').click( function(){
+    $('#OffeneAnfragenButton').click( function(e){
+        e.preventDefault();
         showSection(OFFENEANFRAGEN, "Offene Anfragen");
     });
 
-    $('#AnfrageErstellenButton').click( function(){
+    $('#AnfrageErstellenButton').click( function(e){
+        e.preventDefault();
         showSection(ANFRAGEERSTELLEN, "Anfrage Erstellen");
     });
 
-    $('#AnfrageErstelltButton').click( function(){
+    $('#AnfrageErstelltButton').click( function(e){
+        e.preventDefault();
         showSection(MEINEANFRAGEN, "Meine Anfragen");
     });
 
@@ -276,20 +302,6 @@ $(document).ready(function() {
             menuWidth: 300, // Default is 240
             edge: 'left', // Choose the horizontal origin
             closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-        }
-    );
-
-    $(document).ready(function() {
-        Materialize.updateTextFields();
-    });
-
-    $(document).ready(function() {
-        $('select').material_select();
-    });
-
-    $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
     });
 
     //am/pm
@@ -333,5 +345,23 @@ $(document).ready(function() {
     //vibrate
     $('#timepicker_vibrate').pickatime({
         vibrate: true
+    });
+
+    $(document).ready(function() {          //second $(document).ready(function() is needed to keep materialize working
+        Materialize.updateTextFields();
+    });
+
+    $(document).ready(function() {          //third $(document).ready(function() is needed to keep materialize working
+        $('select').material_select();
+    });
+
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15 // Creates a dropdown of 15 years to control year
+    });
+
+    $('#startSearch').click( function(e){
+        e.preventDefault();
+        offeneAnfragen();
     });
 });
