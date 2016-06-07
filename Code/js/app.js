@@ -11,31 +11,222 @@ var ANFRAGEERSTELLEN = '#Anfrage_Erstellen';
 var TERMINE = '#Termine';
 
 // shows Section with id excluding NavBar
-function showSectionWithoutNav(id){
+function showSectionWithoutNav(id)
+{
     $('section').hide(); // hides current section
     $(id).show(); //shows new section
     $('#navigation').hide(); //hides NavBar
-    $
 }
 
 // shows Section with id and title including NavBar
-function showSection(id, title){
+function showSection(id, title)
+{
     $('section').hide(); // hides current section
-    $(id).show(); // shows new section
     $('#navigation').show(); // shows NavBar
+    $(id).show(); // shows new section
     $("h6").text(title); // sets wanted title on NavBar
 }
 
+//*************************************DataLogin*********************************//
+
+ var function login()
+{
+    var user = $.getJson("/rest.php/login",
+        {
+            username: $('#username').text();
+            password: $('#passwordLogin').text();
+        }
+    ).fail(function(jqxhr, textStatus, error)
+    {
+        if(textStatus == "invalid username") //TODO: nachricht muss noch angeglichen werden
+        $('#passwordLogin').addClass('invalid').removeClass('validate');
+        if(textStatus == "invalid password") //TODO: nachricht muss noch angeglichen werden
+        $('#username').addClass('invalid').removeClass('validate');
+        else
+            alert(textStatus + " " + error);
+    }
+    return user;
+});
+
+
+
+ //***********************************DataRegister*********************************//
+ function register()
+ {
+     if ($('#password').text() == $('#passwordBestätigung').text())
+     {
+         $.getJson("/Rest.php/register",
+         {
+             username: $('#firstname').text();
+             lastname: $('#lastname').text();
+             mail: $('#mail').text();
+             password: $('#password').text();
+             ort: $('#ort').text();
+         }).fail(function (jqxhr, textStatus, error)
+         {
+            alert("sending register data to database failed")
+         });
+     }
+ }
+
+/*
+POST /Rest.php/register HTTP/1.1
+Host: 127.0.0.1
+Content-Type: application/json; charset=UTF-8
+{   "username": $('#firstname').text(),
+    "lastname": $('#lastname').text(),
+    "mail": $('#mail').text(),
+    "password": $('#password').text(),
+    "ort": $('#ort').text()
+}
+*/
+
+ //*******************************load OffeneAnfragen*********************************//
+ var function offeneAnfragen()
+{
+     var myPlace = getLatLng(getSelectedLocation());
+     var html;
+     var anfrage = $.getJson("/rest.php/offeneAnfragen", function( json )
+     {
+         for(int i = 0; i<json.length; ++i)
+         {
+
+             if(json[i].userid != user.userid) {
+
+                 html = '<li>
+                 < div class = "collapsible-header" >
+                 json[i].userid.firstname + " " + json[i].userid.lastname + "," + json[i].date + "," + json[i].time < / div >
+                 < div class = "collapsible-body" > < p > jason[i].comment < br > < br > < a > jason[i].telnr < / a > < / p > < / div >
+                 < / li > ';
+
+                 $('#anfragen').append(html);
+             }
+         }
+     });
+     return anfrage;
+ }
+
+ //*******************************OffeneAnfrage gets Zusage*********************************//
+ function zusagen()
+ {
+     $.getJson("/rest.php/offeneAnfragen",
+     {
+         userid: user.userid;
+         anfrageid: anfrage.anfrageid;
+         comment: $('.anfrageZusagen').parent().find('p').text();
+         telnr: $('.anfrageZusagen').parent().find('a').text();
+     }).fail(function (jqxhr, textStatus, error)
+     {
+        alert(textStatus + " " + error);
+     });
+ }
+
+ //*********************************Termine************************//
+ function termine()
+ {
+     $.getJson("/rest.php/termine", function(json)
+     {
+         var html;
+         for(int i = 0; i<json.length; ++i)
+         {
+             var anfragePlace = getLatLng(json[i].location);
+            if(json[i].userid==user.userid && json[i].isopen == false && getMatches(myPlace, anfragePlace))
+            {
+                 html = '<li>< div class = "collapsible-header">
+                 json[i].userid.firstname + " " + json[i].userid.lastname + "," + json[i].date + "," + json[i].time < / div >
+                 < div class = "collapsible-body" > < p > jason[i].comment < br > < br > < a > jason[i].telnr < / a > < / p > < / div >
+                 < / li > ';
+                 $(TERMINE).find('ul').appendChild(html);
+             }
+         }
+     }).fail(function (jqxhr, textStatus, error)
+     {
+        alert(textStatus + " " + error);
+     });
+ }
+
+//**************************************selectAnfragenWithinRadius***************//
+function getSelectedLocation()
+{
+    //$("input[type='text'][name='location']:text");
+    return $('#ort').text();
+    log($('#ort').text());
+}
+
+function getSelectedRadius()
+{
+    //$("input[type='number'][name='radius']:value");
+    log($('#radius').val());
+    return $('#radius').val();
+}
+
+/*function initialize() {
+    var address = getSelectedLocation();
+    var autocomplete = new google.maps.places.Autocomplete(address);
+    autocomplete.setTypes(['geocode']);
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            return;
+        }
+
+        var address = '';
+        if (place.address_components) {
+            address = [
+                (place.address_components[0] && place.address_components[0].short_name || ''),
+                (place.address_components[1] && place.address_components[1].short_name || ''),
+                (place.address_components[2] && place.address_components[2].short_name || '')
+            ].join(' ');
+        }
+    });
+}*/
+
+//get latitude and longitude of a location name
+function getLatLng(location)
+{
+    var options = {
+        types: ['geocode'],
+        componentRestrictions: {country: 'ch'}//Switzerland only
+    };
+    geocoder = new google.maps.Geocoder();
+    var autocomplete = new google.maps.places.Autocomplete(location,options); //autocompletes the location
+    geocoder.geocode( { 'places': autocomplete}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            Console.log(result[0].geometry.location.lat());
+            return new google.maps.LatLng(results[0].geometry.location.lat(), result[0].geometry.location.lng());
+            //results[0].geometry.location.lng();
+        }
+        else
+        {
+            alert("Geocode was not successful for the following reason: " + status);
+        }
+    });
+}
+
+//tests if the distance of a request location is within the radius
+function getMatches(myPlace, anfragePlace)
+{
+    if(computeDistanceBetween(myPlace, anfragePlace) <= getSelectedRadius())
+        return true;
+    return flase;
+}
+
 $(document).ready(function() {
-    showSection(START);
-    $('#navigation').hide();
+    showSectionWithoutNav(START);
+    //$('#navigation').hide();
 
     $('#buger').click( function(){
         $('#navigation').show();
     });
 
+    $('#ButtonLogin').click( function(){
+        //showSectionWithoutNav(LOGIN);
+        showSection(LOGIN, "LOGIN NUR IM MOMENT")
+    });
+
     $('#Startseite-Link').click( function(){
         showSection(STARTSEITE, "SportLink");
+
     });
 
     $('#Offene_Anfragen-Link').click( function(){
@@ -64,10 +255,6 @@ $(document).ready(function() {
 
     $('#ButtonRegister').click( function(){
         showSectionWithoutNav(REGISTER);
-    });
-
-    $('#ButtonLogin').click( function(){
-        showSectionWithoutNav(LOGIN);
     });
 
     $('#RegisterButton').click( function(){
@@ -148,6 +335,4 @@ $(document).ready(function() {
     $('#timepicker_vibrate').pickatime({
         vibrate: true
     });
-
-
 });
