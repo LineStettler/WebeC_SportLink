@@ -77,7 +77,14 @@ class DBAcess {
 		}
 	}
 
-	function getAnfragen($userId, $isopen, $excludeUserId) {
+	function getUserById($id) {
+		$this -> getUserById -> execute(array($id));
+		$dbUser = $this -> getUserById -> fetch(PDO::FETCH_ASSOC);
+		unset($dbUser['password']);
+		return $dbUser;
+	}
+
+	function getAnfragen($userId, $isopen, $excludeUserId, $freizeit, $training, $wettkampf, $sportart) {
 		$sql = "SELECT * FROM `anfrage` WHERE `date` > NOW()";
 		if (isset($userId)) {
 			$sql .= " AND personId = :personId";
@@ -88,17 +95,47 @@ class DBAcess {
 		if (isset($excludeUserId)) {
 			$sql .= " AND personId <> :excludeUserId";
 		}
+		if (isset($freizeit) && $freizeit) {
+			$sql .= " AND freizeit = :freizeit";
+		}
+		if (isset($training) && $training) {
+			$sql .= " AND training= :training";
+		}
+		if (isset($wettkampf) && $wettkampf) {
+			$sql .= " AND wettkampf = :wettkampf";
+		}
+		if (isset($sportart) && $sportart != "Sportart wählen") {
+			$sql .= " AND sportart = :sportart";
+		}
 		$statement = $this -> pdo -> prepare($sql);
-		$statement -> bindParam(":personId", $userId);
-		$statement -> bindParam(":isOpen", $isopen);
-		$statement -> bindParam(":excludeUserId", $excludeUserId);
+		if (isset($userId)) {
+			$statement -> bindParam(":personId", $userId);
+		}
+		if (isset($isopen)) {
+			$statement -> bindParam(":isOpen", $isopen);
+		}
+		if (isset($excludeUserId)) {
+			$statement -> bindParam(":excludeUserId", $excludeUserId);
+		}
+		if (isset($freizeit) && $freizeit) {
+			$statement -> bindParam(":freizeit", $freizeit);
+		}
+		if (isset($training) && $training) {
+			$statement -> bindParam(":training", $training);
+		}
+		if (isset($wettkampf) && $wettkampf) {
+			$statement -> bindParam(":wettkampf", $wettkampf);
+		}
+		if (isset($sportart) && $sportart != "Sportart wählen") {
+			$statement -> bindParam(":sportart", $sportart);
+		}
 
 		$exec = $statement -> execute();
 		return $statement -> fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	function createAnfrage($freizeit, $training, $wettkampf, $personId, $sportart, $location, $date, $comment) {
-		$exec = $this -> createAnfrage -> execute(array($freizeit, $training, $wettkampf, $personId, $sportart, $location, $date, $comment, 0));
+		$exec = $this -> createAnfrage -> execute(array($freizeit, $training, $wettkampf, $personId, $sportart, $location, $date, $comment, 1));
 		if ($exec) {
 			$this -> getAnfrageById -> execute(array($this -> pdo -> lastInsertId()));
 			return $this -> getAnfrageById -> fetchAll(PDO::FETCH_ASSOC);
@@ -107,7 +144,7 @@ class DBAcess {
 
 	function createZusage($anfrageId, $personId, $telNr, $comment = "") {
 		$this -> createZusage -> execute(array($anfrageId, $personId, $telNr, $comment));
-		$this -> getZusageById(array($this -> pdo -> lastInsertId()));
+		$this -> getZusageById-> execute(array($this -> pdo -> lastInsertId()));
 		return $this -> getZusageById -> fetch(PDO::FETCH_ASSOC);
 	}
 
@@ -139,6 +176,48 @@ class DBAcess {
 		$user = $this -> getUserById -> fetch(PDO::FETCH_ASSOC);
 
 		return $user;
+	}
+
+	/**
+	 * source: http://www.codexworld.com/distance-between-two-addresses-google-maps-api-php/
+	 * Author: CodexWorld
+	 * Function Name: getDistance()
+	 * $addressFrom => From address.
+	 * $addressTo => To address.
+	 * $unit => Unit type.
+	 *
+	 **/
+	function getDistance($addressFrom, $addressTo, $unit = 'K') {
+		//Change address format
+		$formattedAddrFrom = str_replace(' ', '+', $addressFrom);
+		$formattedAddrTo = str_replace(' ', '+', $addressTo);
+
+		//Send request and receive json data
+		$geocodeFrom = file_get_contents('http://maps.google.com/maps/api/geocode/json?address=' . $formattedAddrFrom . '&sensor=false');
+		$outputFrom = json_decode($geocodeFrom);
+		$geocodeTo = file_get_contents('http://maps.google.com/maps/api/geocode/json?address=' . $formattedAddrTo . '&sensor=false');
+		$outputTo = json_decode($geocodeTo);
+
+		//Get latitude and longitude from geo data
+		$latitudeFrom = $outputFrom -> results[0] -> geometry -> location -> lat;
+		$longitudeFrom = $outputFrom -> results[0] -> geometry -> location -> lng;
+		$latitudeTo = $outputTo -> results[0] -> geometry -> location -> lat;
+		$longitudeTo = $outputTo -> results[0] -> geometry -> location -> lng;
+
+		//Calculate distance from latitude and longitude
+		$theta = $longitudeFrom - $longitudeTo;
+		$dist = sin(deg2rad($latitudeFrom)) * sin(deg2rad($latitudeTo)) + cos(deg2rad($latitudeFrom)) * cos(deg2rad($latitudeTo)) * cos(deg2rad($theta));
+		$dist = acos($dist);
+		$dist = rad2deg($dist);
+		$miles = $dist * 60 * 1.1515;
+		$unit = strtoupper($unit);
+		if ($unit == "K") {
+			return ($miles * 1.609344);
+		} else if ($unit == "N") {
+			return ($miles * 0.8684);
+		} else {
+			return $miles;
+		}
 	}
 
 }

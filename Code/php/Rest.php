@@ -52,7 +52,7 @@ $app -> post('/register', function(Request $request, Response $response) {
 	$value = $this -> db -> register($name, $prename, $mail, $password, $place);
 
 	if ($value === false) {
-		$response = $response -> withStatus(400, "username already exists");
+		$response = $response -> withStatus(400, "email already registered");
 		return $response;
 	}
 	$response -> withJson($value);
@@ -65,12 +65,24 @@ $app -> post('/register', function(Request $request, Response $response) {
  * @param isopen (optional) filter to get all anfrage that are closed or open
  * @param excludeUserId (optioal) filter to get all anfrage that don't have this userId
  * @return all anfragen that match the filters as JSON objects and are after todays date
+ * 		isopen : "true",
+ excludeUserId : $('#userId').text(),
+ range : $('#range').val(),
+ freizeit : $('#freizeit2').is(":checked"),
+ training : $('#training2').is(":checked"),
+ wettkampf : $('#wettkampf').is(":checked"),
+ sportart : $('#sportart').is(":checked")
  */
 $app -> get('/anfrage', function(Request $request, Response $response) {
 	$data = $request -> getQueryParams();
-	$userId =null;
+	$userId = null;
 	$isopen = null;
 	$excludeUserId = null;
+	$freizeit = null;
+	$training = null;
+	$wettkampf = null;
+	$sportart = null;
+
 	if (isset($data['userId'])) {
 		$userId = filter_var($data['userId'], FILTER_SANITIZE_NUMBER_INT);
 	}
@@ -80,7 +92,33 @@ $app -> get('/anfrage', function(Request $request, Response $response) {
 	if (isset($data['excludeUserId'])) {
 		$excludeUserId = filter_var($data['excludeUserId'], FILTER_SANITIZE_NUMBER_INT);
 	}
-	$returnData = $this -> db -> getAnfragen($userId, $isopen, $excludeUserId);
+
+	if (isset($data['freizeit'])) {
+		$freizeit = filter_var($data['freizeit'], FILTER_VALIDATE_BOOLEAN);
+	}
+	if (isset($data['training'])) {
+		$training = filter_var($data['training'], FILTER_VALIDATE_BOOLEAN);
+	}
+	if (isset($data['wettkampf'])) {
+		$wettkampf = filter_var($data['wettkampf'], FILTER_VALIDATE_BOOLEAN);
+	}
+	if (isset($data['sportart'])) {
+		$sportart = filter_var($data['sportart'], FILTER_SANITIZE_STRING);
+	}
+	$returnData = $this -> db -> getAnfragen($userId, $isopen, $excludeUserId, $freizeit, $training, $wettkampf, $sportart);
+	if (isset($data['range'])) {
+		$range = filter_var($data['range'], FILTER_SANITIZE_NUMBER_INT);
+		$newArr = array();		
+		$rangeUserId = filter_var($data['rangeUserId'], FILTER_SANITIZE_NUMBER_INT);
+		foreach ($returnData as $key => $value) {
+			$user = $this -> db -> getUserById($rangeUserId);
+			$distance = $this -> db -> getDistance($user['ort'], $value['location']);
+			if($distance < $range){
+				$newArr[] = $value;
+			}
+		}
+		$returnData = $newArr;
+	}
 	$response -> withJson($returnData);
 	return $response;
 });
@@ -111,7 +149,8 @@ $app -> post('/anfrage', function(Request $request, Response $response) {
 	$comment = filter_var($data['comment'], FILTER_SANITIZE_STRING);
 	$userId = filter_var($data['userId'], FILTER_SANITIZE_STRING);
 	$datetime = $date . ' ' . $time;
-	$anfrage = $this -> db -> createAnfrage($freizeit, $training, $wettkampf, $userId, $sportart, $location, $datetime, $comment);
+	$date =  DateTime::createFromFormat('d F, Y H:i', $datetime);
+	$anfrage = $this -> db -> createAnfrage($freizeit, $training, $wettkampf, $userId, $sportart, $location, $date->format('Y-m-d H:i:s'), $comment);
 	$response -> withJson($anfrage);
 	return $response;
 });
@@ -188,14 +227,13 @@ $app -> post('/zusage2', function(Request $request, Response $response) {
 
 /**
  * GET /user
- * @param anfrageid a filter for the user
+ * @param userId a filter for the user
  * @return the user matching this anfrage as JSON object
  */
 $app -> get('/user', function(Request $request, Response $response) {
 	$data = $request -> getQueryParams();
-	$anfrageId = filter_var($data['anfrageId'], FILTER_SANITIZE_STRING);
-
-	$responseData = $this -> db -> getUserByAnfrageId($anfrageId);
+	$userId = filter_var($data['userId'], FILTER_SANITIZE_STRING);
+	$responseData = $this -> db -> getUserById($userId);
 
 	$response -> withJson($responseData);
 	return $response;
