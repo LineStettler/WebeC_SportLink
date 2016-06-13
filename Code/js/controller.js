@@ -1,3 +1,6 @@
+/**
+ * This class handles button actions 
+ */
 $(document).ready(function() {
 	//*******************
 	//Startseite
@@ -83,9 +86,6 @@ $(document).ready(function() {
 		showSection(MEINEANFRAGEN, "Meine Anfragen");
 	});
 
-	//TODO all below
-	
-
 	//*******************
 	//Anfrage Erstellen
 	//*******************
@@ -118,18 +118,4 @@ $(document).ready(function() {
 		termine();
 		showSection(TERMINE, "Termine");
 	});	
-
-
-
-	//***************************************Zusagen******************************
-	$('.ButtonZusage1').click(function(e) {
-		e.preventDefault();
-		zusage1();
-	});
-
-	$('.ButtonZusage2').click(function(e) {
-		e.preventDefault();
-		zusage2();
-	});
-	
 });

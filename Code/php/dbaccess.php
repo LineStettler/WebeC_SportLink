@@ -38,7 +38,7 @@ class DBAcess {
 			$this -> createZusage = $this -> pdo -> prepare("INSERT INTO `zusage1`(`anfrageId`, `personid`, `telnr`, `comment`) VALUES (?,?,?,?)");
 			$this -> getZusageById = $this -> pdo -> prepare("SELECT * FROM `zusage1` WHERE `id` = ?");
 
-			$this -> createZusage2 = $this -> pdo -> prepare("INSERT INTO `zusage2`(`zusage1id`, `telnr`, `comment`) VALUES (?,?,?)");
+			$this -> createZusage2 = $this -> pdo -> prepare("INSERT INTO `zusage2`(`anfrageId`, `zusage1id`, `telnr`, `comment`) VALUES (?,?,?,?)");
 			$this -> getZusage2ById = $this -> pdo -> prepare("SELECT * FROM `zusage2` WHERE `id` = ?");
 			$this -> setAnfrageToDoneById = $this -> pdo -> prepare("UPDATE `anfrage` SET `isopen`=1 WHERE `id` = ?");
 
@@ -144,17 +144,24 @@ class DBAcess {
 
 	function createZusage($anfrageId, $personId, $telNr, $comment = "") {
 		$this -> createZusage -> execute(array($anfrageId, $personId, $telNr, $comment));
-		$this -> getZusageById-> execute(array($this -> pdo -> lastInsertId()));
+		$this -> getZusageById -> execute(array($this -> pdo -> lastInsertId()));
 		return $this -> getZusageById -> fetch(PDO::FETCH_ASSOC);
 	}
 
-	function getZusagen($anfrageId) {
-		$this -> getAllZusagenByAnfrageId -> execute(array($anfrageId));
-		return $this -> getAllZusagenByAnfrageId -> fetchAll(PDO::FETCH_ASSOC);
+	function getZusagen($anfrageId, $done) {
+		if ($done) {
+			$this -> getAllZusagen2ByAnfrageId -> execute(array($anfrageId));
+			$zusage2 = $this -> getAllZusagen2ByAnfrageId -> fetch(PDO::FETCH_ASSOC);
+			$this->getZusageById->execute(array($zusage2['zusage1id']));
+			return $this -> getZusageById -> fetch(PDO::FETCH_ASSOC);
+		} else {
+			$this -> getAllZusagenByAnfrageId -> execute(array($anfrageId));
+			return $this -> getAllZusagenByAnfrageId -> fetchAll(PDO::FETCH_ASSOC);
+		}
 	}
 
-	function createZusagetoZusage($anfrageId, $personId, $telNr, $comment = "") {
-		$this -> createZusage2 -> execute(array($anfrageId, $telnr, $comment));
+	function createZusagetoZusage($anfrageId, $zusageId, $telNr, $comment = "") {
+		$this -> createZusage2 -> execute(array($anfrageId, $zusageId, $telnr, $comment));
 		$lastId = $this -> pdo -> lastInsertId();
 
 		$this -> setAnfrageToDoneById(array($anfrageId));
@@ -165,7 +172,10 @@ class DBAcess {
 
 	function getZusagen2($anfrageId) {
 		$this -> getAllZusagen2ByAnfrageId -> execute(array($anfrageId));
-		return $this -> getAllZusagen2ByAnfrageId -> fetchAll(PDO::FETCH_ASSOC);
+		$userId = $this->getUserByAnfrageId($anfrageId);
+		$returnArray = $this -> getAllZusagen2ByAnfrageId -> fetch(PDO::FETCH_ASSOC);
+		$returnArray['personId'] = $userId['id'];
+		return $returnArray;
 	}
 
 	function getUserByAnfrageId($anfrageId) {

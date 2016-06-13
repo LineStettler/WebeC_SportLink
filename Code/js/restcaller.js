@@ -1,5 +1,9 @@
 /**
- * sends user data to server
+ * Checks if the register information is correct
+ * and if the data is correct it would send the register information to the
+ * server
+ * if the register process was succesfull, it shows the Login screen
+ * if unsucessful it will show what was wrong
  */
 function register() {
 	$('#registerResult').text("");
@@ -39,10 +43,8 @@ function register() {
 }
 
 /**
- * sends login data to server and if it is valid, userdata is returned.
+ * sends login data to server and if it is valid, userdata is returned and saved.
  * Otherwise password and username gets marked
- *
- * @return user if username and password are valid
  */
 function login() {
 	$.post(restURL + 'login', {
@@ -60,6 +62,9 @@ function login() {
 	});
 }
 
+/**
+ * deletes the user information and redirects to the login screen
+ */
 function logout() {
 	$('#userId').text("");
 	$('#firstName').text("");
@@ -67,9 +72,9 @@ function logout() {
 }
 
 /**
- * Adds all open request to dom
- *
- * @return Array with all requests
+ * gets all Anfragen that dont belong to the user
+ * if sucessful it empties the offene anfrage list
+ * and adds the data from the server to the offene Anfrage list
  */
 function offeneAnfragen() {
 
@@ -89,17 +94,18 @@ function offeneAnfragen() {
 		for ( i = 0; i < anfragen.length; ++i) {
 			addOffeneAnfrage(anfragen[i], '#offeneAnfragen', '');
 		}
-	}).fail(function(jqxhr, textStatus, error) {
-		alert("something went horribly wrong, sry");
 	});
 }
 
+/**
+ * gets the user information matching an anfrage
+ * if succesfull adds the anfrage to the offene anfrage list
+ */
 function addOffeneAnfrage(anfrage, id, subId) {
 	$.get(restURL + "/user", {
 		userId : anfrage.personId
 	}).done(function(data) {
 		var anfrageUser = JSON.parse(data);
-		console.log(anfrage);
 		//@formatter:off
 		var html = '<li><div class="collapsible-header">' 
 		+ '<i class="material-icons"></i>' + anfrageUser.vorname + ' ' + anfrageUser.name + ', ' + anfrage.date 
@@ -127,52 +133,9 @@ function addOffeneAnfrage(anfrage, id, subId) {
 	});
 }
 
-function createZusage(anfrageid) {
-	$.post(restURL + "/zusage", {
-		userId : $('#userId').text(),
-		anfrageId : anfrageid,
-		comment : $('#anfrageZusageComment' + anfrageid).val(),
-		telNr : $('#anfrageZusageTelNr' + anfrageid).val()
-	}).done(function(data) {
-		console.log(data);
-		showSection(OFFENEANFRAGEN, "Offene Anfragen");
-	}).fail(function(jqxhr, textStatus, error) {
-		alert("something went horribly wrong, sry");
-	});
-}
-
-function addZusage(zusage, id, anfrageId) {
-	$.get(restURL + "/user", {
-		userId : zusage.personid
-	}).done(function(data) {
-		var zusageUser = JSON.parse(data);
-		//@formatter:off
-		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body">'
-		+'<p>' + zusage.comment + '<br><br><a>' + zusage.telnr + '</a></p>'
-		+'<p>'
-		+'<div class="input-field">'
-		+'<input type="text" id="zusageZusageTelNr'+zusage.id+'" class="validate">'
-		+'<label class="" for="zusageZusageTelNr'+zusage.id+'">Telefonnummer</label>'
-		+'</div>'
-		+'<div class="input-field">'
-		+'<textarea class="materialize-textarea" id="zusageZusageComment'+zusage.id+'"></textarea>'
-		+'<label for="zusageZusageComment'+zusage.id+'">Kommentar</label>'
-		+'</div>'
-		+'<button class="btn btn-default" onclick="createZusage2('+anfrageId+','+zusage.id+')">Zusagen</button></p>'
-		+'</div></li>';
-		+'</div></li></ul>';
-		//@formatter:on
-		$('.collapsible').collapsible({
-			accordion : true
-		});
-		$(id).append(html);
-	});
-}
-
-function createZusage2(anfrageId, zusageId){
-	
-}
-
+/**
+ *TODO
+ */
 function addMeineAnfrage(anfrage) {
 	$.get(restURL + "/user", {
 		userId : anfrage.personId
@@ -203,14 +166,43 @@ function addMeineAnfrage(anfrage) {
 					addZusage(zusage, '#meineZusage' + anfrage.id, anfrage.id);
 				}
 			}
-		}).fail(function(jqxhr, textStatus, error) {
-			alert("something went horribly wrong, sry");
 		});
 	});
 }
 
 /**
- * sends data of new request to server to generate new request in database
+ * TODO
+ */
+function addZusage(zusage, id, anfrageId) {
+	$.get(restURL + "/user", {
+		userId : zusage.personid
+	}).done(function(data) {
+		var zusageUser = JSON.parse(data);
+		//@formatter:off
+		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body">'
+		+'<p>' + zusage.comment + '<br><br><a>' + zusage.telnr + '</a></p>'
+		+'<p>'
+		+'<div class="input-field">'
+		+'<input type="text" id="zusageZusageTelNr'+zusage.id+'" class="validate">'
+		+'<label class="" for="zusageZusageTelNr'+zusage.id+'">Telefonnummer</label>'
+		+'</div>'
+		+'<div class="input-field">'
+		+'<textarea class="materialize-textarea" id="zusageZusageComment'+zusage.id+'"></textarea>'
+		+'<label for="zusageZusageComment'+zusage.id+'">Kommentar</label>'
+		+'</div>'
+		+'<button class="btn btn-default" onclick="createZusage2('+anfrageId+','+zusage.id+')">Zusagen</button></p>'
+		+'</div></li>';
+		+'</div></li>';
+		//@formatter:on
+		$('.collapsible').collapsible({
+			accordion : true
+		});
+		$(id).append(html);
+	});
+}
+
+/**
+ * TODO
  */
 function anfrageErstellen() {
 	$.post(restURL + "anfrage", {
@@ -234,15 +226,11 @@ function anfrageErstellen() {
 		$('#comment').val("");
 		meineAnfragen();
 		showSection(MEINEANFRAGEN, "Meine Anfragen");
-	}).fail(function(jqxhr, textStatus, error) {
-		alert("something went horribly wrong, sry");
 	});
 }
 
 /**
- * adds to dom users open requests, users open confirmations and confirmations
- * the user got from his request
- * but have not confirmed jet
+ * TODO
  */
 function meineAnfragen() {
 	$.get(restURL + 'anfrage', {
@@ -255,25 +243,141 @@ function meineAnfragen() {
 			var anfrage = anfragen[i];
 			addMeineAnfrage(anfrage);
 		}
-	}).fail(function(jqxhr, textStatus, error) {
-		alert("something went horribly wrong, sry");
 	});
 }
 
+/**
+ * creates a new zusage to a anfrage
+ * if sucessful redirects to offene anfragen
+ */
+function createZusage(anfrageid) {
+	$.post(restURL + "/zusage", {
+		userId : $('#userId').text(),
+		anfrageId : anfrageid,
+		comment : $('#anfrageZusageComment' + anfrageid).val(),
+		telNr : $('#anfrageZusageTelNr' + anfrageid).val()
+	}).done(function(data) {
+		console.log(data);
+		showSection(OFFENEANFRAGEN, "Offene Anfragen");
+	});
+}
+
+/**
+ *TODO
+ */
+function createZusage2(anfrageId, zusageId) {
+	$.post(restURL + "/zusage2", {
+		anfrageId : anfrageId,
+		zusageId : zusageId,
+		comment : $('#zusageZusageComment' + zusage.id).val(),
+		telNr : $('zusageZusageTelNr' + zusage.id).val()
+	}).done(function(data) {
+		console.log(data);
+		termine();
+		showSection(TERMINE, "Termine");
+	});
+}
 
 //TODO
 /**
- * adds all confirmed requests to users list of appointments
+ *TODO
  */
 function termine() {
 	$('#temine').empty();
-	$.get(restURL+ '/anfrage', {
-		isopen:"false",
-		userId:$('#userId').text()
+	$.get(restURL + '/anfrage', {
+		isopen : "false",
+		userId : $('#userId').text()
 	}).done(function(data) {
-		console.log(data);
-		
-	}).fail(function(jqxhr, textStatus, error) {
-		alert("something went horribly wrong, sry");
+		var anfragen = JSON.parse(data);
+		for ( i = 0; i < anfragen.length; ++i) {
+			var anfrage = anfragen[i];
+			addTerminAnfrage(anfrage, "terminAnfrage" + anfrage.id);
+		}
+	});
+
+	//get zusage 1
+	//get anfrage add them add zusage 2 to them
+}
+
+/**
+ *TODO
+ */
+function addTerminAnfrage(anfrage, subId) {
+	$.get(restURL + "/user", {
+		userId : anfrage.personId
+	}).done(function(data) {
+		var anfrageUser = JSON.parse(data);
+		//@formatter:off
+		var html = '<li><div class="collapsible-header">' 
+		+'<i class="material-icons"></i>' + anfrageUser.vorname + ' ' + anfrageUser.name + ', ' + anfrage.date
+		+'</div><div class="collapsible-body" id="' + 'meineTermine' + anfrage.id + '">'
+		+'Ort: '+anfrage.location+'<br>'
+		+'Sportart: '+anfrage.sportart+'<br>'
+		+'Freizeit: '+anfrage.freizeit+'<br>'
+		+'Training: '+anfrage.training+'<br>'
+		+'Wettkampf: '+anfrage.wettkampf+'<br>'
+		+'<p>' + anfrage.comment + '</p></div></li>';
+		//@formatter:on
+		$('#temine').append(html);
+
+		$.get(restURL + 'zusage', {
+			anfrageId : anfrage.id,
+			done : "true"
+		}).done(function(data) {
+			var zusage = JSON.parse(data);
+			var ul = '<ul class="collapsible" data-collapsible="accordion" id="meineZusage' + anfrage.id + '"></ul>';
+			$('#meineTermine' + anfrage.id).append(ul);
+			addTerminZusageToAnfrage(zusage, '#meineZusage' + anfrage.id, anfrage.id);
+		});
 	});
 }
+
+/**
+ * TODO
+ */
+function addTerminZusageToAnfrage(zusage, id, anfrageId) {
+	$.get(restURL + "/user", {
+		userId : zusage.personid
+	}).done(function(data) {
+		console.log(data);
+		var zusageUser = JSON.parse(data);
+		//@formatter:off
+		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body" id="meineZusageDiv'+anfrageId+'">'
+		+'<p>' + zusage.comment + '<br><br><a>' + zusage.telnr + '</a></p>'
+		+'</div></li>';
+		var ul = '<ul class="collapsible" data-collapsible="accordion" id="meineZusageZusage' + anfrageId + '"></ul>';
+		//@formatter:on
+		$(id).append(html);
+		$('#meineZusageDiv' + anfrageId).append(ul);
+		$('.collapsible').collapsible({
+			accordion : true
+		});
+
+		$.get(restURL + "/zusage2", {
+			anfrageId : anfrageId
+		}).done(function(data) {
+			console.log(data);
+			var zusage = JSON.parse(data);
+			addTerminZusageToZusage(zusage, "#meineZusageZusage" + anfrageId);
+		});
+	});
+}
+
+/**
+ *TODO
+ */
+function addTerminZusageToZusage(zusage2, id) {
+	$.get(restURL + "/user", {
+		userId : zusage2.personId
+	}).done(function(data) {
+		console.log(data);
+		var zusageUser = JSON.parse(data);
+		//@formatter:off
+		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body">'
+		+'<p>' + zusage2.comment + '<br><br><a>' + zusage2.telnr + '</a></p>'
+		+'</div></li>';
+		//@formatter:on
+		$(id).append(html);
+	});
+}
+

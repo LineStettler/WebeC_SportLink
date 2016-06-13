@@ -157,13 +157,20 @@ $app -> post('/anfrage', function(Request $request, Response $response) {
 
 /**
  * GET /zusage
- * @param anfrageId a filter for the zusagen
+ * @param anfrageId a filter for the zusagen, either this or the userId has to be set not both
+ * @param userId a userId to get all zusagen for this user, either this or anfrageId has to be set not both
+ * @param done (optional) if true returns only the zusage that was accepted
  * @return all zusage that match the anfrageId
  */
 $app -> get('/zusage', function(Request $request, Response $response) {
 	$data = $request -> getQueryParams();
 	$anfrageId = filter_var($data['anfrageId'], FILTER_SANITIZE_STRING);
-	$returnData = $this -> db -> getZusagen($anfrageId);
+	$done = false;
+	if(isset($data['done'])){
+		$done = filter_var($data['done'], FILTER_VALIDATE_BOOLEAN);
+	}
+	
+	$returnData = $this -> db -> getZusagen($anfrageId, $done);
 	$response -> withJson($returnData);
 	return $response;
 });
@@ -197,8 +204,7 @@ $app -> get('/zusage2', function(Request $request, Response $response) {
 	$data = $request -> getQueryParams();
 	$anfrageId = filter_var($data['anfrageId'], FILTER_SANITIZE_STRING);
 
-	$responseData = $this -> db -> getZusagen2($anfrageId);
-
+	$returnData = $this -> db -> getZusagen2($anfrageId);
 	$response -> withJson($returnData);
 	return $response;
 });
@@ -206,20 +212,20 @@ $app -> get('/zusage2', function(Request $request, Response $response) {
 /**
  * POST /zusage2
  * creates a new zusage2 and sets the isOpen status of the anfrage to false
- * @param userId the user that is creating this zusage2
  * @param anfrageId the anfrage this zusage2 is about
  * @param comment (optional) an optional comment
  * @param telNr the telephone user this is about
+ * @param zusageId the zusage 1 id this zusage belongs to
  * @return 200 OK and the nwely created zusage2
  */
 $app -> post('/zusage2', function(Request $request, Response $response) {
 	$data = $request -> getParsedBody();
-	$userId = filter_var($data['userId'], FILTER_SANITIZE_STRING);
 	$anfrageId = filter_var($data['anfrageId'], FILTER_SANITIZE_STRING);
 	$comment = filter_var($data['comment'], FILTER_SANITIZE_STRING);
 	$telNr = filter_var($data['telNr'], FILTER_SANITIZE_STRING);
+	$zusageId = filter_var($data['zusageId'], FILTER_SANITIZE_STRING);
 
-	$returnData = $this -> db -> createZusagetoZusage($anfrageId, $userId, $telNr, $comment);
+	$returnData = $this -> db -> createZusagetoZusage($anfrageId,$zusageId, $userId, $telNr, $comment);
 
 	$response -> withJson($returnData);
 	return $response;
