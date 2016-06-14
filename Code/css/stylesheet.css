@@ -99,3 +99,7 @@ select{
 .form-signin {
         max-width: 300px;
 }
+
+#navigation {
+    background-color: #ef5350;
+}
