@@ -342,6 +342,9 @@ function addTerminAnfrage(anfrage, subId) {
 	});
 }
 
+/**
+ * gets a zusage to a anfrage and adds it to the anfrage in termin and adds zusage 2
+ */
 function getTerminZusageToAnfrage(anfrageId){
 	$.get(restURL + '/zusage', {
 			anfrageId : anfrageId,
@@ -355,7 +358,7 @@ function getTerminZusageToAnfrage(anfrageId){
 }
 
 /**
- * TODO
+ * adds a zusage to a anfrage and adds zusage 2
  */
 function addTerminZusageToAnfrage(zusage, id, anfrageId) {
 	$.get(restURL + "/user", {
@@ -378,6 +381,9 @@ function addTerminZusageToAnfrage(zusage, id, anfrageId) {
 	});
 }
 
+/**
+ * gets a zusage 2 to a zusage and adds it to the termin screen 
+ */
 function getTerminZusageToZusage(anfrageId) {
 	$.get(restURL + "/zusage2", {
 		anfrageId : anfrageId
@@ -388,7 +394,7 @@ function getTerminZusageToZusage(anfrageId) {
 }
 
 /**
- *TODO
+ * add the zusage 2 to the zusage in the termin screen
  */
 function addTerminZusageToZusage(zusage2, id) {
 	$.get(restURL + "/user", {

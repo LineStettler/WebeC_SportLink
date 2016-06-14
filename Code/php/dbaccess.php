@@ -53,6 +53,9 @@ class DBAcess {
 		}
 	}
 
+	/**
+	 * login fucntion checks the username and password against the database and returns true if it is correct
+	 */
 	function login($username, $password) {
 		$exec = $this -> getUserByEmail -> execute(array($username));
 		$dbUser = $this -> getUserByEmail -> fetch(PDO::FETCH_ASSOC);
@@ -65,6 +68,9 @@ class DBAcess {
 		return false;
 	}
 
+	/**
+	 * adds a new person to the databse
+	 */
 	function register($name, $prename, $mail, $password, $place) {
 		$exec = $this -> getUserByEmail -> execute(array($mail));
 		$exists = $this -> getUserByEmail -> fetch(PDO::FETCH_ASSOC);
@@ -79,6 +85,9 @@ class DBAcess {
 		}
 	}
 
+	/**
+	 * returns a user object by its id
+	 */
 	function getUserById($id) {
 		$this -> getUserById -> execute(array($id));
 		$dbUser = $this -> getUserById -> fetch(PDO::FETCH_ASSOC);
@@ -86,6 +95,9 @@ class DBAcess {
 		return $dbUser;
 	}
 
+	/**
+	 * gets a anfrage by its filters
+	 */
 	function getAnfragen($userId, $isopen, $excludeUserId, $anfrageId, $freizeit, $training, $wettkampf, $sportart) {
 		$sql = "SELECT * FROM `anfrage` WHERE `date` > NOW()";
 		if (isset($anfrageId)) {
@@ -142,6 +154,9 @@ class DBAcess {
 		return $statement -> fetchAll(PDO::FETCH_ASSOC);
 	}
 
+	/**
+	 * adds a new anfrage to the database
+	 */
 	function createAnfrage($freizeit, $training, $wettkampf, $personId, $sportart, $location, $date, $comment) {
 		$exec = $this -> createAnfrage -> execute(array($freizeit, $training, $wettkampf, $personId, $sportart, $location, $date, $comment, 1));
 		if ($exec) {
@@ -150,12 +165,18 @@ class DBAcess {
 		}
 	}
 
+	/**
+	 * adds a new zusage to the database
+	 */
 	function createZusage($anfrageId, $personId, $telNr, $comment = "") {
 		$this -> createZusage -> execute(array($anfrageId, $personId, $telNr, $comment));
 		$this -> getZusageById -> execute(array($this -> pdo -> lastInsertId()));
 		return $this -> getZusageById -> fetch(PDO::FETCH_ASSOC);
 	}
 
+	/**
+	 * gets a zusage from the database by the filters
+	 */
 	function getZusagen($anfrageId, $done) {
 		if ($done) {
 			$this -> getAllZusagen2ByAnfrageId -> execute(array($anfrageId));
@@ -168,6 +189,9 @@ class DBAcess {
 		}
 	}
 
+	/**
+	 * gets a zusage from the database by the filters
+	 */
 	function getZusagenByUserId($userId, $done) {
 		$this -> getZusageByUserId -> execute(array($userId));
 		$returnData = $this -> getZusageByUserId -> fetchAll(PDO::FETCH_ASSOC);
@@ -183,16 +207,22 @@ class DBAcess {
 		return $returnData;
 	}
 
+	/**
+	 * adds a zusage 2 to the databse
+	 */
 	function createZusagetoZusage($anfrageId, $zusageId, $telNr, $comment = "") {
 		$this -> createZusage2 -> execute(array($anfrageId, $zusageId, $telNr, $comment));
 		$lastId = $this -> pdo -> lastInsertId();
 
-		$this -> setAnfrageToDoneById->execute(array($anfrageId));
+		$this -> setAnfrageToDoneById -> execute(array($anfrageId));
 
-		$this -> getZusage2ById->execute(array($lastId));
+		$this -> getZusage2ById -> execute(array($lastId));
 		return $this -> getZusage2ById -> fetch(PDO::FETCH_ASSOC);
 	}
 
+	/**
+	 * gets a zusage 2 from the database
+	 */
 	function getZusagen2($anfrageId) {
 		$this -> getAllZusagen2ByAnfrageId -> execute(array($anfrageId));
 		$userId = $this -> getUserByAnfrageId($anfrageId);
@@ -203,6 +233,9 @@ class DBAcess {
 		return $returnArray;
 	}
 
+	/**
+	 * gets a user by a anfrage id from the database
+	 */
 	function getUserByAnfrageId($anfrageId) {
 		$this -> getAnfrageById -> execute(array($anfrageId));
 		$anfrage = $this -> getAnfrageById -> fetch(PDO::FETCH_ASSOC);
@@ -214,6 +247,8 @@ class DBAcess {
 	}
 
 	/**
+	 * returns the distance between 2 addresses standard unit is kilometres
+	 *
 	 * source: http://www.codexworld.com/distance-between-two-addresses-google-maps-api-php/
 	 * Author: CodexWorld
 	 * Function Name: getDistance()
