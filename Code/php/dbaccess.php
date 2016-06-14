@@ -1,8 +1,8 @@
 <?php
 class DBAcess {
 	private $dsn = 'mysql:dbname=sportlink;host=127.0.0.1';
-	private $dbuser = 'root';
-	private $dbpassword = '';
+	private $dbuser = 'sportlink';
+	private $dbpassword = 'SUjfwNT8HVHKn56q';
 	private $pdo;
 
 	private $getUserByEmail;
