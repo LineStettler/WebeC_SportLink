@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 07. Jun 2016 um 14:03
--- Server-Version: 10.1.10-MariaDB
--- PHP-Version: 5.6.19
+-- Erstellungszeit: 14. Jun 2016 um 11:45
+-- Server-Version: 10.1.9-MariaDB
+-- PHP-Version: 5.6.15
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Datenbank: `sportlink`
 --
-CREATE DATABASE IF NOT EXISTS `sportlink` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+CREATE DATABASE IF NOT EXISTS `sportlink` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `sportlink`;
 
 -- --------------------------------------------------------
@@ -36,7 +36,7 @@ CREATE TABLE `anfrage` (
   `personId` int(11) NOT NULL,
   `sportart` varchar(250) NOT NULL,
   `location` varchar(250) NOT NULL,
-  `date` date NOT NULL,
+  `date` datetime NOT NULL,
   `comment` varchar(1000) NOT NULL,
   `isopen` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -46,7 +46,9 @@ CREATE TABLE `anfrage` (
 --
 
 INSERT INTO `anfrage` (`id`, `freizeit`, `training`, `wettkampf`, `personId`, `sportart`, `location`, `date`, `comment`, `isopen`) VALUES
-(1, 0, 0, 0, 1, 'Irgendeine', 'hier', '2016-06-30', 'my comment', 0);
+(7, 0, 0, 0, 12, '4', 'Aarau', '2016-06-24 09:45:00', 'Runde Badminton', 0),
+(8, 0, 0, 0, 12, 'Tennis', 'Brugg', '2016-06-23 10:00:00', 'Ne Runde Tennis', 1),
+(9, 0, 0, 0, 15, '5', 'Aarau', '2016-06-15 15:15:00', 'asdasdasd', 0);
 
 -- --------------------------------------------------------
 
@@ -68,8 +70,9 @@ CREATE TABLE `person` (
 --
 
 INSERT INTO `person` (`id`, `name`, `vorname`, `mail`, `password`, `ort`) VALUES
-(1, 'Heinz', 'Peter', 'heinz.peter@gmail.com', 'b', 'hier'),
-(8, 'karl', 'karl', 'karl@gmail.com', 'b', 'there');
+(12, 'Kunkel', 'Thomas', 'thomas.kunkel.tk@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Brugg'),
+(14, 'Muster', 'Max', 'Max.Muster@muster.ch', '827ccb0eea8a706c4c34a16891f84e7b', 'Aarau'),
+(15, 'Muster', 'Maxine', 'Maxine.Muster@muster.ch', '827ccb0eea8a706c4c34a16891f84e7b', 'Aarau');
 
 -- --------------------------------------------------------
 
@@ -90,7 +93,9 @@ CREATE TABLE `zusage1` (
 --
 
 INSERT INTO `zusage1` (`id`, `anfrageId`, `personid`, `telnr`, `comment`) VALUES
-(1, 1, 1, '03456789O', 'COMMENT');
+(6, 7, 14, '01234578', 'Habe SchlÃ¤ger'),
+(7, 7, 15, '78993566', 'bin nett'),
+(8, 9, 14, '456842685523', 'sdfsadfsdfsdfsdf');
 
 -- --------------------------------------------------------
 
@@ -101,9 +106,18 @@ INSERT INTO `zusage1` (`id`, `anfrageId`, `personid`, `telnr`, `comment`) VALUES
 CREATE TABLE `zusage2` (
   `id` int(11) NOT NULL,
   `anfrageId` int(11) NOT NULL,
+  `zusage1id` int(11) NOT NULL,
   `telnr` varchar(250) NOT NULL,
   `comment` varchar(1000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Daten für Tabelle `zusage2`
+--
+
+INSERT INTO `zusage2` (`id`, `anfrageId`, `zusage1id`, `telnr`, `comment`) VALUES
+(3, 7, 7, '12312312312', 'asdasdasdasdasd'),
+(5, 9, 8, '1243568790as', 'daasdasdasdasd');
 
 --
 -- Indizes der exportierten Tabellen
@@ -141,22 +155,22 @@ ALTER TABLE `zusage2`
 -- AUTO_INCREMENT für Tabelle `anfrage`
 --
 ALTER TABLE `anfrage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT für Tabelle `person`
 --
 ALTER TABLE `person`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT für Tabelle `zusage1`
 --
 ALTER TABLE `zusage1`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT für Tabelle `zusage2`
 --
 ALTER TABLE `zusage2`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
