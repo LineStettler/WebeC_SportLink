@@ -82,7 +82,7 @@ function offeneAnfragen() {
 		//data
 		isopen : "true",
 		excludeUserId : $('#userId').text(),
-		range : $('#range').val(),
+		range : $('#radius').val(),
 		freizeit : $('#freizeit2').is(":checked"),
 		training : $('#training2').is(":checked"),
 		wettkampf : $('#wettkampf2').is(":checked"),
@@ -134,7 +134,8 @@ function addOffeneAnfrage(anfrage, id, subId) {
 }
 
 /**
- *TODO
+ * gets all Anfrage from the user and adds them to meine anfrage
+ * if succesfull also gets all zusage to the anfragen and adds them to the anfrage
  */
 function addMeineAnfrage(anfrage) {
 	$.get(restURL + "/user", {
@@ -171,7 +172,7 @@ function addMeineAnfrage(anfrage) {
 }
 
 /**
- * TODO
+ * gets the zusage by anfrageid and adds them to the html element id
  */
 function addZusage(zusage, id, anfrageId) {
 	$.get(restURL + "/user", {
@@ -202,7 +203,7 @@ function addZusage(zusage, id, anfrageId) {
 }
 
 /**
- * TODO
+ * creates a post request to create a anfrage
  */
 function anfrageErstellen() {
 	$.post(restURL + "anfrage", {
@@ -213,7 +214,7 @@ function anfrageErstellen() {
 		freizeit : $('#freizeit').val(),
 		training : $('#training').val(),
 		wettkampf : $('#wettkampf').val(),
-		sportart : $('#sportart').val(),
+		sportart : $('#sportart option:selected').text(),
 		comment : $('#comment').val()
 	}).done(function(data) {
 		$('#date').val("");
@@ -230,7 +231,7 @@ function anfrageErstellen() {
 }
 
 /**
- * TODO
+ * populates the Meien Anfragen screen with data
  */
 function meineAnfragen() {
 	$.get(restURL + 'anfrage', {
@@ -257,30 +258,27 @@ function createZusage(anfrageid) {
 		comment : $('#anfrageZusageComment' + anfrageid).val(),
 		telNr : $('#anfrageZusageTelNr' + anfrageid).val()
 	}).done(function(data) {
-		console.log(data);
-		showSection(OFFENEANFRAGEN, "Offene Anfragen");
+		showSection(STARTSEITE, "Startseite");
 	});
 }
 
 /**
- *TODO
+ * creates a new zusage 2 per post request
  */
 function createZusage2(anfrageId, zusageId) {
 	$.post(restURL + "/zusage2", {
 		anfrageId : anfrageId,
 		zusageId : zusageId,
-		comment : $('#zusageZusageComment' + zusage.id).val(),
-		telNr : $('zusageZusageTelNr' + zusage.id).val()
+		comment : $('#zusageZusageComment' + zusageId).val(),
+		telNr : $('#zusageZusageTelNr' + zusageId).val()
 	}).done(function(data) {
-		console.log(data);
 		termine();
 		showSection(TERMINE, "Termine");
 	});
 }
 
-//TODO
 /**
- *TODO
+ * populates the termine screen
  */
 function termine() {
 	$('#temine').empty();
@@ -295,12 +293,32 @@ function termine() {
 		}
 	});
 
-	//get zusage 1
-	//get anfrage add them add zusage 2 to them
+	$.get(restURL + '/zusage', {
+		userId : $('#userId').text(),
+		done : "true"
+	}).done(function(data) {
+		var zusagen = JSON.parse(data);
+		for ( i = 0; i < zusagen.length; ++i) {
+			var zusage = zusagen[i];
+			getTerminAnfrage(zusage.anfrageId);
+		}
+	});
+}
+/**
+ * gets a anfrage matching a anfrageid
+ * and adds it to the termine screen
+ */
+function getTerminAnfrage(anfrageId) {
+	$.get(restURL + "/anfrage", {
+		anfrageId : anfrageId
+	}).done(function(data) {
+		var anfrage = JSON.parse(data)[0];
+		addTerminAnfrage(anfrage, "terminAnfrage" + anfrage.id);
+	});
 }
 
 /**
- *TODO
+ * add a anfrage including the zusage and zusage2 to the termin screen
  */
 function addTerminAnfrage(anfrage, subId) {
 	$.get(restURL + "/user", {
@@ -319,17 +337,21 @@ function addTerminAnfrage(anfrage, subId) {
 		+'<p>' + anfrage.comment + '</p></div></li>';
 		//@formatter:on
 		$('#temine').append(html);
+		getTerminZusageToAnfrage(anfrage.id);
+		
+	});
+}
 
-		$.get(restURL + 'zusage', {
-			anfrageId : anfrage.id,
+function getTerminZusageToAnfrage(anfrageId){
+	$.get(restURL + '/zusage', {
+			anfrageId : anfrageId,
 			done : "true"
 		}).done(function(data) {
 			var zusage = JSON.parse(data);
-			var ul = '<ul class="collapsible" data-collapsible="accordion" id="meineZusage' + anfrage.id + '"></ul>';
-			$('#meineTermine' + anfrage.id).append(ul);
-			addTerminZusageToAnfrage(zusage, '#meineZusage' + anfrage.id, anfrage.id);
+			var ul = '<ul class="collapsible" data-collapsible="accordion" id="meineZusage' + anfrageId + '"></ul>';
+			$('#meineTermine' + anfrageId).append(ul);
+			addTerminZusageToAnfrage(zusage, '#meineZusage' + anfrageId, anfrageId);
 		});
-	});
 }
 
 /**
@@ -339,7 +361,6 @@ function addTerminZusageToAnfrage(zusage, id, anfrageId) {
 	$.get(restURL + "/user", {
 		userId : zusage.personid
 	}).done(function(data) {
-		console.log(data);
 		var zusageUser = JSON.parse(data);
 		//@formatter:off
 		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body" id="meineZusageDiv'+anfrageId+'">'
@@ -352,14 +373,17 @@ function addTerminZusageToAnfrage(zusage, id, anfrageId) {
 		$('.collapsible').collapsible({
 			accordion : true
 		});
+		getTerminZusageToZusage(anfrageId);
 
-		$.get(restURL + "/zusage2", {
-			anfrageId : anfrageId
-		}).done(function(data) {
-			console.log(data);
-			var zusage = JSON.parse(data);
-			addTerminZusageToZusage(zusage, "#meineZusageZusage" + anfrageId);
-		});
+	});
+}
+
+function getTerminZusageToZusage(anfrageId) {
+	$.get(restURL + "/zusage2", {
+		anfrageId : anfrageId
+	}).done(function(data) {
+		var zusage = JSON.parse(data);
+		addTerminZusageToZusage(zusage, "#meineZusageZusage" + anfrageId);
 	});
 }
 
@@ -370,7 +394,6 @@ function addTerminZusageToZusage(zusage2, id) {
 	$.get(restURL + "/user", {
 		userId : zusage2.personId
 	}).done(function(data) {
-		console.log(data);
 		var zusageUser = JSON.parse(data);
 		//@formatter:off
 		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body">'

@@ -44,59 +44,6 @@ function showSection(id, title) {
 }
 
 
-/**
- * Gets location name of user as string
- *
- * @return  LocationName the user selected by register
- */
-function getSelectedLocation() {
-	return $('#ort').val();
-}
-
-/**
- * Gets radius from slider input
- *
- * @return selected radius
- */
-function getSelectedRadius() {
-	return $('#radius').val();
-}
-
-/**
- * gets latitude and longitude of a location name
- *
- * @param location  name of location
- * @return LatLng   object of location
- */
-function getLatLng(location) {
-	geocoder = new google.maps.Geocoder();
-	var ret = geocoder.geocode({
-		'address' : location
-	}, function(results, status) {
-		if (status == google.maps.GeocoderStatus.OK) {
-			console.log(results[0].geometry.location.lat());
-			console.log(results[0].geometry.location.lng());
-			//TODO: es muss anders auf lat lng zugegriffen werden
-			return new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
-		} else {
-			alert("Geocode was not successful for the following reason: " + status);
-		}
-	});
-	console.log(geocoder);
-}
-
-/**
- * checks if the distance of a requested place is within the radius of myPlace
- *
- * @param myPlace   place user chose by registration
- * @param anfragePlace  place of Request
- *
- * @return if anfragePlace is within the selected radius of myPlace
- */
-function getMatches(myPlace, anfragePlace) {
-	return google.maps.geometry.spherical.computeDistanceBetween(myPlace, anfragePlace) <= getSelectedRadius();
-}
-
 
 $(document).ready(function() {
 
