@@ -19,7 +19,7 @@ function register() {
 			$('#username').text(user.mail);
 			showSectionWithoutNav(LOGIN);
 		}).fail(function(jqxhr, textStatus, error) {
-			if (jqxhr.status = 400) {
+			if (jqxhr.status == 400) {
 				$('#mail').addClass('invalid').removeClass('validate');
 				$('#registerResult').text(error);
 			}
@@ -135,7 +135,8 @@ function addOffeneAnfrage(anfrage, id, subId) {
 
 /**
  * gets all Anfrage from the user and adds them to meine anfrage
- * if succesfull also gets all zusage to the anfragen and adds them to the anfrage
+ * if succesfull also gets all zusage to the anfragen and adds them to the
+ * anfrage
  */
 function addMeineAnfrage(anfrage) {
 	$.get(restURL + "/user", {
@@ -304,6 +305,7 @@ function termine() {
 		}
 	});
 }
+
 /**
  * gets a anfrage matching a anfrageid
  * and adds it to the termine screen
@@ -338,23 +340,24 @@ function addTerminAnfrage(anfrage, subId) {
 		//@formatter:on
 		$('#temine').append(html);
 		getTerminZusageToAnfrage(anfrage.id);
-		
+
 	});
 }
 
 /**
- * gets a zusage to a anfrage and adds it to the anfrage in termin and adds zusage 2
+ * gets a zusage to a anfrage and adds it to the anfrage in termin and adds
+ * zusage 2
  */
-function getTerminZusageToAnfrage(anfrageId){
+function getTerminZusageToAnfrage(anfrageId) {
 	$.get(restURL + '/zusage', {
-			anfrageId : anfrageId,
-			done : "true"
-		}).done(function(data) {
-			var zusage = JSON.parse(data);
-			var ul = '<ul class="collapsible" data-collapsible="accordion" id="meineZusage' + anfrageId + '"></ul>';
-			$('#meineTermine' + anfrageId).append(ul);
-			addTerminZusageToAnfrage(zusage, '#meineZusage' + anfrageId, anfrageId);
-		});
+		anfrageId : anfrageId,
+		done : "true"
+	}).done(function(data) {
+		var zusage = JSON.parse(data);
+		var ul = '<ul class="collapsible" data-collapsible="accordion" id="meineZusage' + anfrageId + '"></ul>';
+		$('#meineTermine' + anfrageId).append(ul);
+		addTerminZusageToAnfrage(zusage, '#meineZusage' + anfrageId, anfrageId);
+	});
 }
 
 /**
@@ -382,7 +385,7 @@ function addTerminZusageToAnfrage(zusage, id, anfrageId) {
 }
 
 /**
- * gets a zusage 2 to a zusage and adds it to the termin screen 
+ * gets a zusage 2 to a zusage and adds it to the termin screen
  */
 function getTerminZusageToZusage(anfrageId) {
 	$.get(restURL + "/zusage2", {
