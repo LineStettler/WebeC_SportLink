@@ -52,7 +52,7 @@ $app -> post('/register', function(Request $request, Response $response) {
 	$value = $this -> db -> register($name, $prename, $mail, $password, $place);
 
 	if ($value === false) {
-		$response = $response -> withStatus(400, "username already exists");
+		$response = $response -> withStatus(400, "email already registered");
 		return $response;
 	}
 	$response -> withJson($value);
@@ -62,15 +62,28 @@ $app -> post('/register', function(Request $request, Response $response) {
 /**
  * GET /anfrage
  * @param userId (optional) filter to get all anfrage with this userid
+ * @param anfrageId (optional only gets the anfrage with this id
  * @param isopen (optional) filter to get all anfrage that are closed or open
  * @param excludeUserId (optioal) filter to get all anfrage that don't have this userId
+ * @param range (optional) filter to get only anfragen that are within this range, if this is set rangeUserId has to be set
+ * @param rangeUserId (has to be set if range is set) filter to get anfrage
+ * @param freizeit (optional) filter to get only anfrage that have this freizeit
+ * @param training (optional) filter to get only anfrage that have this training
+ * @param wettkampf (optional) filter to get only anfrage that have this wettkampf
+ * @param sportart (optional) filter to get only anfrage that have this sportart
  * @return all anfragen that match the filters as JSON objects and are after todays date
  */
 $app -> get('/anfrage', function(Request $request, Response $response) {
 	$data = $request -> getQueryParams();
-	$userId =null;
+	$userId = null;
 	$isopen = null;
 	$excludeUserId = null;
+	$freizeit = null;
+	$training = null;
+	$wettkampf = null;
+	$sportart = null;
+	$anfrageId = null;
+
 	if (isset($data['userId'])) {
 		$userId = filter_var($data['userId'], FILTER_SANITIZE_NUMBER_INT);
 	}
@@ -80,7 +93,35 @@ $app -> get('/anfrage', function(Request $request, Response $response) {
 	if (isset($data['excludeUserId'])) {
 		$excludeUserId = filter_var($data['excludeUserId'], FILTER_SANITIZE_NUMBER_INT);
 	}
-	$returnData = $this -> db -> getAnfragen($userId, $isopen, $excludeUserId);
+	if (isset($data['anfrageId'])) {
+		$anfrageId = filter_var($data['anfrageId'], FILTER_SANITIZE_NUMBER_INT);
+	}
+	if (isset($data['freizeit'])) {
+		$freizeit = filter_var($data['freizeit'], FILTER_VALIDATE_BOOLEAN);
+	}
+	if (isset($data['training'])) {
+		$training = filter_var($data['training'], FILTER_VALIDATE_BOOLEAN);
+	}
+	if (isset($data['wettkampf'])) {
+		$wettkampf = filter_var($data['wettkampf'], FILTER_VALIDATE_BOOLEAN);
+	}
+	if (isset($data['sportart'])) {
+		$sportart = filter_var($data['sportart'], FILTER_SANITIZE_STRING);
+	}
+	$returnData = $this -> db -> getAnfragen($userId, $isopen, $excludeUserId, $anfrageId, $freizeit, $training, $wettkampf, $sportart);
+	if (isset($data['range'])) {
+		$range = floatval(filter_var($data['range'], FILTER_SANITIZE_NUMBER_INT));
+		$newArr = array();
+		$rangeUserId = filter_var($data['rangeUserId'], FILTER_SANITIZE_NUMBER_INT);
+		foreach ($returnData as $key => $value) {
+			$user = $this -> db -> getUserById($rangeUserId);
+			$distance = $this -> db -> getDistance($user['ort'], $value['location']);
+			if ($distance < $range) {
+				$newArr[] = $value;
+			}
+		}
+		$returnData = $newArr;
+	}
 	$response -> withJson($returnData);
 	return $response;
 });
@@ -111,20 +152,34 @@ $app -> post('/anfrage', function(Request $request, Response $response) {
 	$comment = filter_var($data['comment'], FILTER_SANITIZE_STRING);
 	$userId = filter_var($data['userId'], FILTER_SANITIZE_STRING);
 	$datetime = $date . ' ' . $time;
-	$anfrage = $this -> db -> createAnfrage($freizeit, $training, $wettkampf, $userId, $sportart, $location, $datetime, $comment);
+	$date = DateTime::createFromFormat('d F, Y H:i', $datetime);
+	$anfrage = $this -> db -> createAnfrage($freizeit, $training, $wettkampf, $userId, $sportart, $location, $date -> format('Y-m-d H:i:s'), $comment);
 	$response -> withJson($anfrage);
 	return $response;
 });
 
 /**
  * GET /zusage
- * @param anfrageId a filter for the zusagen
+ * @param anfrageId a filter for the zusagen, either this or the userId has to be set not both
+ * @param userId a userId to get all zusagen for this user, either this or anfrageId has to be set not both
+ * @param done (optional) if true returns only the zusage that was accepted
  * @return all zusage that match the anfrageId
  */
 $app -> get('/zusage', function(Request $request, Response $response) {
 	$data = $request -> getQueryParams();
-	$anfrageId = filter_var($data['anfrageId'], FILTER_SANITIZE_STRING);
-	$returnData = $this -> db -> getZusagen($anfrageId);
+
+	$done = false;
+	$returnData = null;
+	if (isset($data['done'])) {
+		$done = filter_var($data['done'], FILTER_VALIDATE_BOOLEAN);
+	}
+	if (isset($data['anfrageId'])) {
+		$anfrageId = filter_var($data['anfrageId'], FILTER_SANITIZE_STRING);
+		$returnData = $this -> db -> getZusagen($anfrageId, $done);
+	} else {
+		$userId = filter_var($data['userId'], FILTER_SANITIZE_STRING);
+		$returnData = $this -> db -> getZusagenByUserId($userId, $done);
+	}
 	$response -> withJson($returnData);
 	return $response;
 });
@@ -158,8 +213,7 @@ $app -> get('/zusage2', function(Request $request, Response $response) {
 	$data = $request -> getQueryParams();
 	$anfrageId = filter_var($data['anfrageId'], FILTER_SANITIZE_STRING);
 
-	$responseData = $this -> db -> getZusagen2($anfrageId);
-
+	$returnData = $this -> db -> getZusagen2($anfrageId);
 	$response -> withJson($returnData);
 	return $response;
 });
@@ -167,20 +221,20 @@ $app -> get('/zusage2', function(Request $request, Response $response) {
 /**
  * POST /zusage2
  * creates a new zusage2 and sets the isOpen status of the anfrage to false
- * @param userId the user that is creating this zusage2
  * @param anfrageId the anfrage this zusage2 is about
  * @param comment (optional) an optional comment
  * @param telNr the telephone user this is about
+ * @param zusageId the zusage 1 id this zusage belongs to
  * @return 200 OK and the nwely created zusage2
  */
 $app -> post('/zusage2', function(Request $request, Response $response) {
 	$data = $request -> getParsedBody();
-	$userId = filter_var($data['userId'], FILTER_SANITIZE_STRING);
 	$anfrageId = filter_var($data['anfrageId'], FILTER_SANITIZE_STRING);
 	$comment = filter_var($data['comment'], FILTER_SANITIZE_STRING);
 	$telNr = filter_var($data['telNr'], FILTER_SANITIZE_STRING);
+	$zusageId = filter_var($data['zusageId'], FILTER_SANITIZE_STRING);
 
-	$returnData = $this -> db -> createZusagetoZusage($anfrageId, $userId, $telNr, $comment);
+	$returnData = $this -> db -> createZusagetoZusage($anfrageId, $zusageId, $telNr, $comment);
 
 	$response -> withJson($returnData);
 	return $response;
@@ -188,14 +242,13 @@ $app -> post('/zusage2', function(Request $request, Response $response) {
 
 /**
  * GET /user
- * @param anfrageid a filter for the user
+ * @param userId a filter for the user
  * @return the user matching this anfrage as JSON object
  */
 $app -> get('/user', function(Request $request, Response $response) {
 	$data = $request -> getQueryParams();
-	$anfrageId = filter_var($data['anfrageId'], FILTER_SANITIZE_STRING);
-
-	$responseData = $this -> db -> getUserByAnfrageId($anfrageId);
+	$userId = filter_var($data['userId'], FILTER_SANITIZE_STRING);
+	$responseData = $this -> db -> getUserById($userId);
 
 	$response -> withJson($responseData);
 	return $response;
