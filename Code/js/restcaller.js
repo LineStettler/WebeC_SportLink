@@ -107,26 +107,26 @@ function addOffeneAnfrage(anfrage, id, subId) {
 	}).done(function(data) {
 		var anfrageUser = JSON.parse(data);
 		//@formatter:off
-		var html = '<li><div class="collapsible-header">' 
-		+ '<i class="material-icons"></i>' + anfrageUser.vorname + ' ' + anfrageUser.name + ', ' + anfrage.date 
-		+ '</div><div class="collapsible-body" id="' + subId + '">'
-		+'Ort: '+anfrage.location+'<br>'
-		+'Sportart: '+anfrage.sportart+'<br>'
-		+'Freizeit: '+anfrage.freizeit+'<br>'
-		+'Training: '+anfrage.training+'<br>'
-		+'Wettkampf: '+anfrage.wettkampf+'<br>'
-		+'<p>' + anfrage.comment + '</p>'
-		+'<p>'
-		+'<div class="input-field">'
-		+'<input type="text" id="anfrageZusageTelNr'+anfrage.id+'" class="validate">'
-		+'<label class="" for="anfrageZusageTelNr'+anfrage.id+'">Telefonnummer</label>'
-		+'</div>'
-		+'<div class="input-field">'
-		+'<textarea class="materialize-textarea" id="anfrageZusageComment'+anfrage.id+'"></textarea>'
-		+'<label for="anfrageZusageComment'+anfrage.id+'">Kommentar</label>'
-		+'</div>'
-		+'<button class="btn btn-default" onclick="createZusage('+anfrage.id+')">Zusagen</button></p>'
-		+'</div></li>';
+		var html = '<li><div class="collapsible-header">' +
+		 '<i class="material-icons"></i>' + anfrageUser.vorname + ' ' + anfrageUser.name + ', ' + anfrage.date +
+		 '</div><div class="collapsible-body" id="' + subId + '">'+
+		'Ort: '+anfrage.location+'<br>'+
+		'Sportart: '+anfrage.sportart+'<br>'+
+		'Freizeit: '+anfrage.freizeit+'<br>'+
+		'Training: '+anfrage.training+'<br>'+
+		'Wettkampf: '+anfrage.wettkampf+'<br>'+
+		'<p>' + anfrage.comment + '</p>'+
+		'<p>'+
+		'<div class="input-field">'+
+		'<input type="text" id="anfrageZusageTelNr'+anfrage.id+'" class="validate">'+
+		'<label class="" for="anfrageZusageTelNr'+anfrage.id+'">Telefonnummer</label>'+
+		'</div>'+
+		'<div class="input-field">'+
+		'<textarea class="materialize-textarea" id="anfrageZusageComment'+anfrage.id+'"></textarea>'+
+		'<label for="anfrageZusageComment'+anfrage.id+'">Kommentar</label>'+
+		'</div>'+
+		'<button class="btn btn-default" onclick="createZusage('+anfrage.id+')">Zusagen</button></p>'+
+		'</div></li>';
 		//@formatter:on
 
 		$(id).append(html);
@@ -144,15 +144,15 @@ function addMeineAnfrage(anfrage) {
 	}).done(function(data) {
 		var anfrageUser = JSON.parse(data);
 		//@formatter:off
-		var html = '<li><div class="collapsible-header">' 
-		+'<i class="material-icons"></i>' + anfrageUser.vorname + ' ' + anfrageUser.name + ', ' + anfrage.date
-		+'</div><div class="collapsible-body" id="' + 'meineAnfrage' + anfrage.id + '">'
-		+'Ort: '+anfrage.location+'<br>'
-		+'Sportart: '+anfrage.sportart+'<br>'
-		+'Freizeit: '+anfrage.freizeit+'<br>'
-		+'Training: '+anfrage.training+'<br>'
-		+'Wettkampf: '+anfrage.wettkampf+'<br>'
-		+'<p>' + anfrage.comment + '</p></div></li>';
+		var html = '<li><div class="collapsible-header">' +
+		'<i class="material-icons"></i>' + anfrageUser.vorname + ' ' + anfrageUser.name + ', ' + anfrage.date+
+		'</div><div class="collapsible-body" id="' + 'meineAnfrage' + anfrage.id + '">'+
+		'Ort: '+anfrage.location+'<br>'+
+		'Sportart: '+anfrage.sportart+'<br>'+
+		'Freizeit: '+anfrage.freizeit+'<br>'+
+		'Training: '+anfrage.training+'<br>'+
+		'Wettkampf: '+anfrage.wettkampf+'<br>'+
+		'<p>' + anfrage.comment + '</p></div></li>';
 		//@formatter:on
 		$('#meineAnfragen').append(html);
 
@@ -181,20 +181,20 @@ function addZusage(zusage, id, anfrageId) {
 	}).done(function(data) {
 		var zusageUser = JSON.parse(data);
 		//@formatter:off
-		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body">'
-		+'<p>' + zusage.comment + '<br><br><a>' + zusage.telnr + '</a></p>'
-		+'<p>'
-		+'<div class="input-field">'
-		+'<input type="text" id="zusageZusageTelNr'+zusage.id+'" class="validate">'
-		+'<label class="" for="zusageZusageTelNr'+zusage.id+'">Telefonnummer</label>'
-		+'</div>'
-		+'<div class="input-field">'
-		+'<textarea class="materialize-textarea" id="zusageZusageComment'+zusage.id+'"></textarea>'
-		+'<label for="zusageZusageComment'+zusage.id+'">Kommentar</label>'
-		+'</div>'
-		+'<button class="btn btn-default" onclick="createZusage2('+anfrageId+','+zusage.id+')">Zusagen</button></p>'
-		+'</div></li>';
-		+'</div></li>';
+		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body">'+
+		'<p>' + zusage.comment + '<br><br><a>' + zusage.telnr + '</a></p>'+
+		'<p>'+
+		'<div class="input-field">'+
+		'<input type="text" id="zusageZusageTelNr'+zusage.id+'" class="validate">'+
+		'<label class="" for="zusageZusageTelNr'+zusage.id+'">Telefonnummer</label>'+
+		'</div>'+
+		'<div class="input-field">'+
+		'<textarea class="materialize-textarea" id="zusageZusageComment'+zusage.id+'"></textarea>'+
+		'<label for="zusageZusageComment'+zusage.id+'">Kommentar</label>'+
+		'</div>'+
+		'<button class="btn btn-default" onclick="createZusage2('+anfrageId+','+zusage.id+')">Zusagen</button></p>'+
+		'</div></li>'+
+		'</div></li>';
 		//@formatter:on
 		$('.collapsible').collapsible({
 			accordion : true
@@ -328,15 +328,15 @@ function addTerminAnfrage(anfrage, subId) {
 	}).done(function(data) {
 		var anfrageUser = JSON.parse(data);
 		//@formatter:off
-		var html = '<li><div class="collapsible-header">' 
-		+'<i class="material-icons"></i>' + anfrageUser.vorname + ' ' + anfrageUser.name + ', ' + anfrage.date
-		+'</div><div class="collapsible-body" id="' + 'meineTermine' + anfrage.id + '">'
-		+'Ort: '+anfrage.location+'<br>'
-		+'Sportart: '+anfrage.sportart+'<br>'
-		+'Freizeit: '+anfrage.freizeit+'<br>'
-		+'Training: '+anfrage.training+'<br>'
-		+'Wettkampf: '+anfrage.wettkampf+'<br>'
-		+'<p>' + anfrage.comment + '</p></div></li>';
+		var html = '<li><div class="collapsible-header">' +
+		'<i class="material-icons"></i>' + anfrageUser.vorname + ' ' + anfrageUser.name + ', ' + anfrage.date+
+		'</div><div class="collapsible-body" id="' + 'meineTermine' + anfrage.id + '">'+
+		'Ort: '+anfrage.location+'<br>'+
+		'Sportart: '+anfrage.sportart+'<br>'+
+		'Freizeit: '+anfrage.freizeit+'<br>'+
+		'Training: '+anfrage.training+'<br>'+
+		'Wettkampf: '+anfrage.wettkampf+'<br>'+
+		'<p>' + anfrage.comment + '</p></div></li>';
 		//@formatter:on
 		$('#temine').append(html);
 		getTerminZusageToAnfrage(anfrage.id);
@@ -369,9 +369,9 @@ function addTerminZusageToAnfrage(zusage, id, anfrageId) {
 	}).done(function(data) {
 		var zusageUser = JSON.parse(data);
 		//@formatter:off
-		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body" id="meineZusageDiv'+anfrageId+'">'
-		+'<p>' + zusage.comment + '<br><br><a>' + zusage.telnr + '</a></p>'
-		+'</div></li>';
+		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body" id="meineZusageDiv'+anfrageId+'">'+
+		'<p>' + zusage.comment + '<br><br><a>' + zusage.telnr + '</a></p>'+
+		'</div></li>';
 		var ul = '<ul class="collapsible" data-collapsible="accordion" id="meineZusageZusage' + anfrageId + '"></ul>';
 		//@formatter:on
 		$(id).append(html);
@@ -405,9 +405,9 @@ function addTerminZusageToZusage(zusage2, id) {
 	}).done(function(data) {
 		var zusageUser = JSON.parse(data);
 		//@formatter:off
-		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body">'
-		+'<p>' + zusage2.comment + '<br><br><a>' + zusage2.telnr + '</a></p>'
-		+'</div></li>';
+		var html = '<li><div class = "collapsible-header" >' + zusageUser.vorname + ' ' + zusageUser.name + '</div><div class = "collapsible-body">'+
+		'<p>' + zusage2.comment + '<br><br><a>' + zusage2.telnr + '</a></p>'+
+		'</div></li>';
 		//@formatter:on
 		$(id).append(html);
 	});
