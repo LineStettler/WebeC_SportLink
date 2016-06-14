@@ -1,31 +1,26 @@
 <!DOCTYPE html>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" xmlns="http://www.w3.org/1999/html"/>
-<!--<link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">-->
-<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-<link href="css/stylesheet.css" type="text/css" rel="stylesheet">
-<link type="text/css" rel="stylesheet" href="css/materialize.clockpicker.css" media="screen,projection" />
 <html lang="en">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta charset="UTF-8">
 		<script src="lib/jquery-2.2.3.min.js"></script>
-		<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>-->
-		<!-- <script type="text/javascript" src="http://maps.googleapis.com/maps/api/geocode/js"></script>-->
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=geometry"></script>
 		<script src="js/app.js"></script>
-		<!--<script src="lib/bootstrap.min.js"></script>-->
 		<script src="js/util.js"></script>
 		<script src="js/controller.js"></script>
 		<script src="js/restcaller.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
 		<script src="js/materialize.clockpicker.js"></script>
+		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen"/>
+		<link href="css/stylesheet.css" type="text/css" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="css/materialize.clockpicker.css" media="screen" />
 		<title>Sportlink</title>
 	</head>
 	<body>
 		<main>
 			<header>
 				<nav id="navigation">
-					<ul id="slide-out" class="side-nav" value="Sportlink">
+					<ul id="slide-out" class="side-nav">
 						<li>
 							<a href="#Startseite" id="Startseite-Link">Startseite</a>
 						</li>
@@ -51,7 +46,7 @@
 							<p class="hide" id="userId"></p>
 						</li>
 					</ul>
-					<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"><img src="img/06_menu_stack-128.png" id="burger"/></i></a>
+					<a href="#" data-activates="slide-out" class="button-collapse"><i class="mdi-navigation-menu"><img src="img/06_menu_stack-128.png" id="burger" alt="menu"/></i></a>
 					<h6 class="flow-text">Login</h6>
 				</nav>
 			</header>
@@ -68,11 +63,11 @@
 					<form class="form-signin">
 						<h3>Login</h3>
 						<div class="input-field">
-							<input type="text" class="input-block-level" id="username" class="validate">
+							<input type="text" class="input-block-level validate" id="username" >
 							<label class="active" for="username">Mail</label>
 						</div>
 						<div class="input-field">
-							<input type="password" class="input-block-level" id="passwordLogin" class="validate">
+							<input type="password" class="input-block-level validate" id="passwordLogin">
 							<label class="active" for="passwordLogin">Password</label>
 						</div>
 						<div style="text-align:center;">
@@ -139,8 +134,6 @@
 				</section>
 				<section id="Startseite" class="container">
 					<h3>Sportlink</h3>
-					<text id="Username"></text>
-					<text id="Ort"></text>
 					<div style="text-align:center;">
 						<button id="OffeneAnfragenButton" class="btn btn-default">
 							Offene Anfragen
